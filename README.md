@@ -1,6 +1,6 @@
 ### Oi! Bem-vindo ao meu repositório👋
 
-- 🌱 Estou estudando Servlet e Programação Orientada a Objetos em Java 
+- 🌱 Estou cursando Engenharia de Software na UCSAL (Universidade Católica do Salvador) 
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=KauaVilasBoas&show_icons=true&theme=merko)
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=KauaVilasBoas&layout=compact&theme=merko)](https://github.com/KauaVilasBoas/github-readme-stats)
