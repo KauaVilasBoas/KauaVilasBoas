@@ -1,31 +1,90 @@
-### Oi! Bem-vindo ao meu repositório👋
+# Kauã Vilas Boas
 
-- 🌱 Sou Engenheiro de Software C#
+  **Mid-Level Backend Engineer** — building production-grade .NET systems with Clean Architecture and DDD.
+  Based in Brazil. Open to remote roles in US / EU / UK timezones.
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=KauaVilasBoas&show_icons=true&theme=merko)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=KauaVilasBoas&layout=compact&theme=merko)](https://github.com/KauaVilasBoas/github-readme-stats)
-<div style="display: inline-block;"><br>
-        <img alt="Kaua-Java" height="50" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original-wordmark.svg"/>
-        <img alt="Kaua-SpringBoot" height="50" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original-wordmark.svg" />
-        <img alt="Kaua-PostgreSQL" height="50" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original-wordmark.svg"/>
-        <img alt="Kaua-CSharp" height="50" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" />
-        <img alt="Kaua-DotNetCore" height="50" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg" />
-        <img alt="Kaua-SQLServer" height="50" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-original-wordmark.svg" />
-        <img alt="Kaua-Git" height="50" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-plain.svg" />
-        <img alt="Kaua-Jira" height="50" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original-wordmark.svg" />
-        <img alt="Kaua-Insomnia" height="50" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/insomnia/insomnia-original.svg" />
-        <img alt="Kaua-NodeJS" height="50" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain.svg" />
-        <img alt="Kaua-Express" height="50" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" />
-        <img alt="Kaua-HTML" height="50" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original-wordmark.svg"/>
-        <img alt="Kaua-CSS" height="50" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original-wordmark.svg"/>
-        
-          
-</div>
+  ---
 
-##
+  Backend engineer with 3 years of experience focused on the .NET ecosystem. I design and build REST APIs and authentication services with attention to maintainability, testability, and clear domain boundaries — Clean
+  Architecture, Domain-Driven Design (light), and unit/integration testing as defaults, not afterthoughts.
 
-<div>
-   <a href="https://www.linkedin.com/in/kau%C3%A3-vilas-boas-375357225/" target="_blank"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"> </a>
-   <a href="https://www.instagram.com/kauacaldeira._/" target="_blank"> <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" ></a>
-   <a href= "mailto:kauacaldeira@hotmail.com" target="_blank"> <img src="https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white" ></a>
-</div>
+  I work primarily with **C# / .NET 8, ASP.NET Core, Entity Framework Core, MongoDB, PostgreSQL, and SQL Server**. Currently exploring system design and distributed systems patterns.
+
+  **Now building:** [AegisIdentity](https://github.com/KauaVilasBoas/AegisIdentity) — an Identity & Authentication service in .NET 8. Active development.
+
+  ---
+
+  ## Tech Stack
+
+  **Languages**
+
+  ![C#](https://img.shields.io/badge/C%23-239120?style=flat-square&logo=csharp&logoColor=white)
+  ![Java](https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
+  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+
+  **Backend / Frameworks**
+
+  ![.NET 8](https://img.shields.io/badge/.NET_8-512BD4?style=flat-square&logo=dotnet&logoColor=white)
+  ![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-512BD4?style=flat-square&logo=dotnet&logoColor=white)
+  ![Entity Framework](https://img.shields.io/badge/Entity_Framework_Core-512BD4?style=flat-square&logo=dotnet&logoColor=white)
+  ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat-square&logo=springboot&logoColor=white)
+  ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
+
+  **Databases**
+
+  ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
+  ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+  ![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=flat-square&logo=microsoftsqlserver&logoColor=white)
+
+  **Tools & Infra**
+
+  ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+  ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
+  ![xUnit](https://img.shields.io/badge/xUnit-512BD4?style=flat-square&logo=dotnet&logoColor=white)
+
+  ---
+
+  ## Featured Projects
+
+  ### [AegisIdentity](https://github.com/KauaVilasBoas/AegisIdentity)
+
+  Identity & Authentication service built with **.NET 8** and **Clean Architecture** — user management, JWT-based authentication, and a Razor Pages backoffice for administration.
+
+  **Architectural highlights**
+  - Clean Architecture with explicit layers: `Api` → `Application` → `Domain` ← `Infrastructure`
+  - Central Package Management (CPM) across the solution and `TreatWarningsAsErrors` enabled
+  - Options validated on startup (`ValidateDataAnnotations().ValidateOnStart()`) — fail fast on misconfiguration
+
+  ![.NET 8](https://img.shields.io/badge/.NET_8-512BD4?style=flat-square&logo=dotnet&logoColor=white)
+  ![C#](https://img.shields.io/badge/C%23-239120?style=flat-square&logo=csharp&logoColor=white)
+  ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
+  ![JWT](https://img.shields.io/badge/JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white)
+  ![xUnit](https://img.shields.io/badge/xUnit-512BD4?style=flat-square&logo=dotnet&logoColor=white)
+
+  **Status:** Active development
+
+  ---
+
+  ## GitHub Activity
+
+  <p align="center">
+    <img
+      src="https://github-readme-activity-graph.vercel.app/graph?username=KauaVilasBoas&theme=tokyo-night&hide_border=true&area=true&custom_title=Contribution%20Activity"
+      alt="Kauã Vilas Boas — contribution activity graph"
+    />
+  </p>
+
+  <p align="center">
+    <img
+      src="https://streak-stats.demolab.com?user=KauaVilasBoas&theme=tokyonight&hide_border=true"
+      alt="Kauã Vilas Boas — GitHub streak"
+      height="165"
+    />
+  </p>
+
+  ---
+
+  ## Connect
+
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kau%C3%A3-vilas-boas-375357225/)
+  [![Email](https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:kauacaldeira@hotmail.com)
