@@ -141,15 +141,12 @@ flowchart LR
 ## Dashboard
 
 <p align="center">
-  <img height="172" src="https://github-readme-stats.vercel.app/api?username=KauaVilasBoas&show_icons=true&hide_border=true&bg_color=0D1117&title_color=A78BFA&text_color=ffffff&icon_color=512BD4&count_private=true&include_all_commits=true&card_width=440" alt="GitHub stats"/>
-  &nbsp;
-  <img height="172" src="https://github-readme-stats.vercel.app/api/top-langs/?username=KauaVilasBoas&layout=compact&hide_border=true&bg_color=0D1117&title_color=A78BFA&text_color=ffffff&langs_count=8&card_width=340" alt="Top languages"/>
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=KauaVilasBoas&theme=tokyo-night&hide_border=true&area=true&custom_title=Contribution%20Activity&bg_color=0D1117&color=A78BFA&line=512BD4&point=A78BFA" alt="Contribution activity graph" width="100%"/>
 </p>
-
 <p align="center">
-  <img height="172" src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=KauaVilasBoas&theme=github_dark&utcOffset=-3" alt="Productive time"/>
+  <img height="200" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=KauaVilasBoas&theme=tokyonight" alt="GitHub stats"/>
   &nbsp;
-  <img height="172" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=KauaVilasBoas&theme=github_dark" alt="Most committed languages this year"/>
+  <img height="200" src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=KauaVilasBoas&theme=tokyonight&utcOffset=-3" alt="Productive time"/>
 </p>
 
 ---
