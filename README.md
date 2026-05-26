@@ -92,51 +92,147 @@ Open to remote backend roles aligned with **EU**, **UK**, or **US Eastern** time
 
 ---
 
-## Currently Building
+  ## Currently Building
 
-### [AegisIdentity](https://github.com/KauaVilasBoas/AegisIdentity) &nbsp;·&nbsp; <sub>Identity & Authentication service in .NET 8</sub>
+  ### [AegisIdentity](https://github.com/KauaVilasBoas/AegisIdentity) &nbsp;·&nbsp; <sub>Identity & Authentication service in .NET 8</sub>
 
-> A portfolio piece built to demonstrate end-to-end architectural decisions on a non-trivial domain — not just "another auth API".
+  > A portfolio piece built to demonstrate end-to-end architectural decisions on a non-trivial domain — not just "another auth API". Multi-solution Clean Architecture with CQRS, ports & adapters, a Razor backoffice     consuming its
+   own JWT, and recurring jobs on Hangfire.
 
-```mermaid
-flowchart LR
-    API["<b>API</b><br/><sub>HTTP · routes</sub>"]
-    APP["<b>Application</b><br/><sub>Use cases · DTOs</sub>"]
-    DOM["<b>Domain</b><br/><sub>Entities · rules</sub>"]
-    INF["<b>Infrastructure</b><br/><sub>MongoDB · JWT</sub>"]
+  ```mermaid
+  flowchart TB
+      CLIENT(["🌐 HTTP Client"])
+      BROWSER(["👤 Admin Browser"])
 
-    API --> APP
-    APP --> DOM
-    INF --> DOM
+      subgraph PRES["🎯 Presentation"]
+          API["<b>AegisIdentity.Api</b><br/><sub>Controllers · IMediator</sub>"]
+          BO["<b>AegisIdentity.Backoffice</b><br/><sub>ASP.NET MVC · cookie auth + JWT</sub>"]
+      end
 
-    style DOM fill:#512BD4,stroke:#A78BFA,color:#fff,stroke-width:2px
-    style API fill:#1f2937,stroke:#374151,color:#fff
-    style APP fill:#1f2937,stroke:#374151,color:#fff
-    style INF fill:#1f2937,stroke:#374151,color:#fff
-```
+      subgraph APP["⚡  Application · CQRS via MediatR"]
+          PIPE["<b>ValidationBehavior</b><br/><sub>FluentValidation pipeline · fail-fast</sub>"]
+          CMD["<b>CommandHandlers</b><br/><sub>RegisterUser · LoginUser</sub>"]
+          QRY["<b>ReadModels</b><br/><sub>Query handlers (scaffold)</sub>"]
+          EVT["<b>EventHandlers</b><br/><sub>Notification handlers (scaffold)</sub>"]
+      end
 
-| Decision | Rationale |
-|---|---|
-| **Clean Architecture, strict layer rules** | `Api → Application → Domain ← Infrastructure`. Domain has zero external dependencies. |
-| **Central Package Management** | Single source of truth for versions across the entire solution. |
-| **`TreatWarningsAsErrors` enabled** | Compiler-enforced quality bar. No "we'll clean it up later". |
-| **Startup-time options validation** | `ValidateDataAnnotations().ValidateOnStart()` — misconfigurations crash on boot, never silently in production. |
-| **JWT + MongoDB + Razor Pages backoffice** | Real authentication flow plus administrative UI — not a textbook example. |
-| **xUnit + integration tests** | Tests as a first-class deliverable. |
+      subgraph DOM["💎 Domain · zero external dependencies"]
+          ENT["<b>Entities & Value Objects</b><br/>User · RefreshToken<br/>EmailConfirmationToken"]
+          PORT["<b>Ports (interfaces)</b><br/>IUserRepository · IJwtService<br/>IPasswordHasher · IEmailService"]
+      end
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Status-Active%20Development-43B581?style=flat-square" alt="Active"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/.NET-8-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET 8"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/Architecture-Clean-A78BFA?style=flat-square" alt="Clean Architecture"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/Auth-JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white" alt="JWT"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/Tested-xUnit-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt="xUnit"/>
-</p>
+      subgraph INFRA["🔧 Infrastructure · adapters"]
+          SEC["<b>Infrastructure</b><br/><sub>JWT · BCrypt · PasswordValidator · Options</sub>"]
+          DAL["<b>DataAccess</b><br/><sub>MongoDbContext · Repositories<br/>ClassMaps · Index initializer</sub>"]
+          INT["<b>Integration</b><br/><sub>MailKit · PwnedPasswordsClient (HIBP)</sub>"]
+      end
 
----
+      subgraph JOB["⏰  Jobs · Hangfire + Hangfire.Mongo"]
+          HF["<b>AegisIdentity.Jobs</b><br/><sub>Recurring scheduler</sub>"]
+          CLEAN["<b>CleanupExpiredRefreshTokensJob</b><br/><sub>cron · 03:00 UTC daily</sub>"]
+      end
+
+      DB[("🗄️<b>MongoDB</b><br/>AegisIdentity_db<br/>AegisIdentity_hangfire")]
+      SMTP[/"📧 SMTP server"/]
+      HIBP[/"🛡️HaveIBeenPwned API<br/><sub>k-anonymity range query</sub>"/]
+
+      CLIENT -- "POST /api/auth/register" --> API
+      BROWSER -- "session cookie" --> BO
+      BO -- "AuthApiClient · Bearer JWT" --> API
+      BO -- "/hangfire dashboard" --> HF
+
+      API -- "Command" --> PIPE
+      PIPE -- "validated" --> CMD
+      CMD --> ENT
+      CMD -. "depends on" .-> PORT
+
+      SEC -. "implements" .-> PORT
+      DAL -. "implements" .-> PORT
+      INT -. "implements" .-> PORT
+
+      DAL ==> |"BSON · async I/O"| DB
+      INT -. "SendAsync" .-> SMTP
+      INT -. "range API" .-> HIBP
+
+      HF --> CLEAN
+      CLEAN -. "DeleteExpiredAsync" .-> DAL
+      HF ==> |"job storage"| DB
+
+      classDef domain     fill:#512BD4,stroke:#A78BFA,color:#fff,stroke-width:2px
+      classDef pres       fill:#0b1220,stroke:#3b82f6,color:#dbeafe
+      classDef app        fill:#0b1220,stroke:#10b981,color:#d1fae5
+      classDef infra      fill:#0b1220,stroke:#f59e0b,color:#fde68a
+      classDef jobs       fill:#0b1220,stroke:#ec4899,color:#fce7f3
+      classDef external   fill:#020617,stroke:#64748b,color:#cbd5e1
+      classDef db         fill:#13aa52,stroke:#00ed64,color:#ffffff,stroke-width:3px
+
+      class ENT,PORT domain
+      class API,BO pres
+      class PIPE,CMD,QRY,EVT app
+      class SEC,DAL,INT infra
+      class HF,CLEAN jobs
+      class CLIENT,BROWSER,SMTP,HIBP external
+      class DB db
+
+      linkStyle 0  stroke:#3b82f6,stroke-width:2px
+      linkStyle 1  stroke:#3b82f6,stroke-width:2px
+      linkStyle 2  stroke:#3b82f6,stroke-width:2px
+      linkStyle 3  stroke:#ec4899,stroke-width:2px
+      linkStyle 4  stroke:#10b981,stroke-width:2px
+      linkStyle 5  stroke:#10b981,stroke-width:2px
+      linkStyle 6  stroke:#a78bfa,stroke-width:2px
+      linkStyle 7  stroke:#a78bfa,stroke-width:2px,stroke-dasharray:4 4
+      linkStyle 8  stroke:#a78bfa,stroke-width:2px,stroke-dasharray:4 4
+      linkStyle 9  stroke:#a78bfa,stroke-width:2px,stroke-dasharray:4 4
+      linkStyle 10 stroke:#a78bfa,stroke-width:2px,stroke-dasharray:4 4
+      linkStyle 11 stroke:#00ed64,stroke-width:3.5px
+      linkStyle 12 stroke:#f59e0b,stroke-width:2px,stroke-dasharray:4 4
+      linkStyle 13 stroke:#f59e0b,stroke-width:2px,stroke-dasharray:4 4
+      linkStyle 14 stroke:#ec4899,stroke-width:2px
+      linkStyle 15 stroke:#ec4899,stroke-width:2px,stroke-dasharray:4 4
+      linkStyle 16 stroke:#00ed64,stroke-width:3.5px
+  ```
+
+  <sub>**Reading the diagram** — solid arrows = in-process synchronous flow · dashed arrows = port/adapter wiring & external I/O · thick green arrows = MongoDB read/write paths · Domain (purple) has zero outgoing dependencies;
+  every other layer depends inward on it.</sub>
+
+  | Decision | Rationale |
+  |---|---|
+  | **Multi-solution Clean Architecture** | Six layer solutions (`Domain` · `Application` · `Infrastructure` · `Presentation` · `Jobs` · `SharedKernel`) aggregated by a root `.sln`. Each layer can be opened, built and reasoned
+  about in isolation. |
+  | **CQRS via MediatR with nested types** | `Command`, `Result`, `Validator` are `sealed record`s nested inside the handler. One file = one use case, fully self-contained. No anemic DTO layer between Controller and Handler. |
+  | **`ValidationBehavior<TRequest,TResponse>` pipeline** | FluentValidation runs *before* the handler. Cheap input checks fail fast; I/O-bound rules (uniqueness, HIBP) stay inside `Handle()`. |
+  | **Ports & Adapters (Dependency Inversion)** | All infrastructure contracts (`IUserRepository`, `IJwtService`, `IEmailService`, `IPasswordHasher`…) live in **Domain**. Adapters in Infrastructure are wired by DI — Domain has
+  zero external references, verified by the compiler. |
+  | **Razor Backoffice consumes its own JWT** | The MVC backoffice authenticates against the public API via a typed `AuthApiClient`, stores the JWT inside an HttpOnly cookie session, and exposes the Hangfire dashboard guarded by
+   cookie auth. |
+  | **Hangfire + Hangfire.Mongo for recurring work** | API hosts the Hangfire server; jobs are scheduled on startup. `CleanupExpiredRefreshTokensJob` deletes expired refresh tokens daily at 03:00 UTC via the same
+  `IRefreshTokenRepository` port. |
+  | **Central Package Management** | `Directory.Packages.props` is the single source of truth for 29 NuGet versions across 13 projects. Zero orphans, zero drift. |
+  | **`TreatWarningsAsErrors` + nullable enabled globally** | Quality bar enforced by the compiler from `Directory.Build.props`. No "we'll clean it up later". |
+  | **Startup-time options validation** | `ValidateDataAnnotations().ValidateOnStart()` — misconfiguration crashes on boot, never silently in production. |
+  | **Global `IExceptionHandler` → RFC 7807** | `ValidationException` → `ValidationProblemDetails` 400; `ConflictException` → 409. Consistent machine-readable errors. |
+  | **xUnit + Testcontainers integration tests** | 222 unit tests; integration suite spins up real MongoDB via Testcontainers. Tests are a first-class deliverable, not an afterthought. |
+
+  <p align="center">
+    <img src="https://img.shields.io/badge/Status-Active%20Development-43B581?style=flat-square" alt="Active"/>
+    &nbsp;
+    <img src="https://img.shields.io/badge/.NET-8-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET 8"/>
+    &nbsp;
+    <img src="https://img.shields.io/badge/Architecture-Clean%20%2B%20CQRS-A78BFA?style=flat-square" alt="Clean Architecture + CQRS"/>
+    &nbsp;
+    <img src="https://img.shields.io/badge/Mediator-MediatR-blue?style=flat-square" alt="MediatR"/>
+    &nbsp;
+    <img src="https://img.shields.io/badge/Database-MongoDB-13AA52?style=flat-square&logo=mongodb&logoColor=white" alt="MongoDB"/>
+    &nbsp;
+    <img src="https://img.shields.io/badge/Auth-JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white" alt="JWT"/>
+    &nbsp;
+    <img src="https://img.shields.io/badge/Jobs-Hangfire-EC4899?style=flat-square" alt="Hangfire"/>
+    &nbsp;
+    <img src="https://img.shields.io/badge/Tested-xUnit-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt="xUnit"/>
+  </p>
+
+  ---
 
 ## Dashboard
 
