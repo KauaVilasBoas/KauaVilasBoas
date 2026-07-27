@@ -7,13 +7,15 @@
 </p>
 
 <p align="center">
-  <i>Building regulated, high-availability systems for the Brazilian public health sector.</i>
+  <i>Building regulated, high-availability systems for the Brazilian public health sector —<br/>and shipping the reusable pieces to NuGet.</i>
 </p>
 
 <p align="center">
   <a href="https://www.linkedin.com/in/kau%C3%A3-vilas-boas-375357225/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
   &nbsp;
   <a href="mailto:kauacaldeira@hotmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>
+  &nbsp;
+  <a href="https://www.nuget.org/profiles/kauavilasboas"><img src="https://img.shields.io/badge/NuGet-004880?style=for-the-badge&logo=nuget&logoColor=white" alt="NuGet"/></a>
   &nbsp;
   <img src="https://img.shields.io/badge/Salvador%2C%20BR-UTC%E2%88%923-512BD4?style=for-the-badge" alt="Location"/>
   &nbsp;
@@ -27,6 +29,8 @@
 ## About
 
 Three years of production experience in the .NET ecosystem. My day-to-day is designing modular monoliths that serve health-surveillance regulatory workflows for state government — systems where domain correctness, traceability, and auditability matter more than novelty.
+
+Outside of work I maintain **[Lumen](https://github.com/KauaVilasBoas/Lumen)**, a family of authorization and identity libraries for ASP.NET Core published on NuGet. It isn't a demo repository: it's versioned independently, documented with ADRs, and consumed in production by a multi-tenant laboratory system serving a real pharmacology lab. Having a real consumer is what keeps it honest — every generic API in it was paid for by a concrete requirement, not invented in a vacuum.
 
 I default to **Clean Architecture**, **Domain-Driven Design**, and **CQRS** where they earn their place. Unit and integration tests are part of *done*, not an afterthought.
 
@@ -45,7 +49,7 @@ Open to remote backend roles aligned with **EU**, **UK**, or **US Eastern** time
       &nbsp;&nbsp;
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" width="44" alt=".NET"/>
       <br><br>
-      <sub>C# · .NET 8 · ASP.NET Core · EF Core</sub>
+      <sub>C# · .NET 8 · ASP.NET Core · EF Core · Dapper</sub>
     </td>
     <td align="center" valign="top" width="240">
       <b>Data</b>
@@ -54,26 +58,26 @@ Open to remote backend roles aligned with **EU**, **UK**, or **US Eastern** time
       &nbsp;&nbsp;
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="44" alt="PostgreSQL"/>
       &nbsp;&nbsp;
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="44" alt="MongoDB"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" width="44" alt="Redis"/>
       <br><br>
-      <sub>SQL Server · PostgreSQL · MongoDB</sub>
+      <sub>SQL Server · PostgreSQL · MongoDB · Redis</sub>
     </td>
     <td align="center" valign="top" width="240">
       <b>Infra</b>
       <br><br>
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="44" alt="Docker"/>
       &nbsp;&nbsp;
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" width="44" alt="Jenkins"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" width="44" alt="Terraform"/>
       &nbsp;&nbsp;
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="44" alt="Git"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="44" alt="AWS"/>
       <br><br>
-      <sub>Docker · Jenkins · Git · IIS / Windows Server</sub>
+      <sub>Docker · Terraform · AWS · Jenkins · GitHub Actions</sub>
     </td>
   </tr>
 </table>
 
 <p align="center">
-  <sub><b>Practices</b> &nbsp;·&nbsp; Clean Architecture &nbsp;·&nbsp; DDD &nbsp;·&nbsp; CQRS &nbsp;·&nbsp; SOLID &nbsp;·&nbsp; xUnit &nbsp;·&nbsp; integration testing</sub>
+  <sub><b>Practices</b> &nbsp;·&nbsp; Clean Architecture &nbsp;·&nbsp; DDD &nbsp;·&nbsp; CQRS &nbsp;·&nbsp; Outbox &nbsp;·&nbsp; SOLID &nbsp;·&nbsp; xUnit &nbsp;·&nbsp; Testcontainers &nbsp;·&nbsp; architecture testing</sub>
   <br>
   <sub><b>Currently exploring</b> &nbsp;·&nbsp; distributed systems &nbsp;·&nbsp; system design at scale &nbsp;·&nbsp; observability patterns</sub>
 </p>
@@ -85,154 +89,81 @@ Open to remote backend roles aligned with **EU**, **UK**, or **US Eastern** time
 > *Architecture is the set of constraints I impose now to make change easier later.*
 
 - **Dependency direction matters more than folder structure.** Layers are a side effect; the real rule is that the Domain depends on nothing — everything else is consequence.
+- **If a boundary isn't tested, it doesn't exist.** Module isolation and dependency rules are asserted by NetArchTest/ArchUnit suites that fail the build. Documentation drifts; a red test doesn't.
+- **A library earns its abstractions from a real consumer.** Generic APIs invented in a vacuum are guesses. Every extension point in Lumen exists because a shipping system needed it — and I wrote down *why* in an ADR.
+- **Adding a package must never change existing behaviour.** A library that silently enforces something on install is a library you can't adopt incrementally.
 - **Misconfiguration in production is silent until it isn't.** I validate options at startup. The app either boots correctly, or it crashes loudly. There is no third state.
-- **Tests aren't a quality gate. They are a contract with future-me** — the engineer who has forgotten how this works six months from now.
 - **A modular monolith ships faster than a half-baked microservice.** Distribution is a cost, not a feature. I make it a deliberate choice, never a default.
 - **Logs are an API for your future self under stress.** Structure them, name them, treat breaking changes seriously.
 
 ---
 
-  ## Currently Building
+## Currently Building
 
-  ### [AegisIdentity](https://github.com/KauaVilasBoas/AegisIdentity) &nbsp;·&nbsp; <sub>Identity & Authentication service in .NET 8</sub>
+### [Lumen](https://github.com/KauaVilasBoas/Lumen) &nbsp;·&nbsp; <sub>Plug-in authorization & identity for ASP.NET Core</sub>
 
-  > A portfolio piece built to demonstrate end-to-end architectural decisions on a non-trivial domain — not just "another auth API". Multi-solution Clean Architecture with CQRS, ports & adapters, a Razor backoffice     consuming its
-   own JWT, and recurring jobs on Hangfire.
+<p>
+  <a href="https://www.nuget.org/packages/Lumen.Authorization"><img src="https://img.shields.io/nuget/v/Lumen.Authorization?logo=nuget&label=Lumen.Authorization&color=004880" alt="Lumen.Authorization"/></a>
+  &nbsp;
+  <a href="https://www.nuget.org/packages/Lumen.Identity"><img src="https://img.shields.io/nuget/v/Lumen.Identity?logo=nuget&label=Lumen.Identity&color=004880" alt="Lumen.Identity"/></a>
+  &nbsp;
+  <a href="https://www.nuget.org/profiles/kauavilasboas"><img src="https://img.shields.io/badge/11%20packages-5.3k%2B%20downloads-43B581?logo=nuget&logoColor=white" alt="11 packages · 5.3k downloads"/></a>
+  &nbsp;
+  <a href="https://github.com/KauaVilasBoas/Lumen/actions/workflows/ci.yml"><img src="https://github.com/KauaVilasBoas/Lumen/actions/workflows/ci.yml/badge.svg" alt="CI"/></a>
+</p>
 
-  ```mermaid
-  flowchart TB
-      CLIENT(["🌐 HTTP Client"])
-      BROWSER(["👤 Admin Browser"])
+> Every ASP.NET Core app ends up hand-rolling the same thing: a permissions table, a join to roles, an `[Authorize]` policy per endpoint, and a half-finished admin screen nobody wants to own. Lumen packages that. Decorate an action with `[RequirePermission]`, mount an admin console at `/lumen`, and keep full ownership of your permission catalog.
+>
+> **11 packages across three families — 5,000+ downloads in the first two weeks after launch.** SQL Server and PostgreSQL, Redis or in-memory caching, and a consumer in production keeping the API honest.
 
-      subgraph PRES["🎯 Presentation"]
-          API["<b>AegisIdentity.Api</b><br/><sub>Controllers · IMediator</sub>"]
-          BO["<b>AegisIdentity.Backoffice</b><br/><sub>ASP.NET MVC · cookie auth + JWT</sub>"]
-      end
+### How it plugs in
 
-      subgraph APP["⚡  Application · CQRS via MediatR"]
-          PIPE["<b>ValidationBehavior</b><br/><sub>FluentValidation pipeline · fail-fast</sub>"]
-          CMD["<b>CommandHandlers</b><br/><sub>RegisterUser · LoginUser</sub>"]
-          QRY["<b>ReadModels</b><br/><sub>Query handlers (scaffold)</sub>"]
-          EVT["<b>EventHandlers</b><br/><sub>Notification handlers (scaffold)</sub>"]
-      end
+```mermaid
+flowchart LR
+    subgraph APP["🧩 Your ASP.NET Core app"]
+        EP["Endpoints<br/><sub>[RequirePermission]</sub>"]
+        SEED["Your EF migration<br/><sub>SeedLumenPermission*</sub>"]
+        BO["/lumen<br/><sub>mounted backoffice</sub>"]
+    end
 
-      subgraph DOM["💎 Domain · zero external dependencies"]
-          ENT["<b>Entities & Value Objects</b><br/>User · RefreshToken<br/>EmailConfirmationToken"]
-          PORT["<b>Ports (interfaces)</b><br/>IUserRepository · IJwtService<br/>IPasswordHasher · IEmailService"]
-      end
+    subgraph LIB["📦 Lumen.Authorization"]
+        ENF["AspNetCore<br/><sub>policy provider · enforcement</sub>"]
+        CORE["Core<br/><sub>profiles · permissions · CQRS</sub>"]
+        MIG["Migrations<br/><sub>Lumen schema · auto-apply</sub>"]
+    end
 
-      subgraph INFRA["🔧 Infrastructure · adapters"]
-          SEC["<b>Infrastructure</b><br/><sub>JWT · BCrypt · PasswordValidator · Options</sub>"]
-          DAL["<b>DataAccess</b><br/><sub>MongoDbContext · Repositories<br/>ClassMaps · Index initializer</sub>"]
-          INT["<b>Integration</b><br/><sub>MailKit · PwnedPasswordsClient (HIBP)</sub>"]
-      end
+    IDN["📦 Lumen.Identity<br/><sub>JWT · refresh tokens (optional)</sub>"]
+    DB[("SQL Server /<br/>PostgreSQL")]
+    CACHE[("Redis /<br/>MemoryCache")]
 
-      subgraph JOB["⏰  Jobs · Hangfire + Hangfire.Mongo"]
-          HF["<b>AegisIdentity.Jobs</b><br/><sub>Recurring scheduler</sub>"]
-          CLEAN["<b>CleanupExpiredRefreshTokensJob</b><br/><sub>cron · 03:00 UTC daily</sub>"]
-      end
+    EP --> ENF --> CORE
+    BO --> CORE
+    CORE --> DB
+    CORE --> CACHE
+    MIG --> DB
+    SEED --> DB
+    IDN -. "authenticates the claim<br/>the library reads userId from" .-> ENF
 
-      DB[("🗄️<b>MongoDB</b><br/>AegisIdentity_db<br/>AegisIdentity_hangfire")]
-      SMTP[/"📧 SMTP server"/]
-      HIBP[/"🛡️HaveIBeenPwned API<br/><sub>k-anonymity range query</sub>"/]
+    classDef app  fill:#0b1220,stroke:#3b82f6,color:#dbeafe
+    classDef lib  fill:#0b1220,stroke:#f59e0b,color:#fde68a
+    classDef idn  fill:#0b1220,stroke:#10b981,color:#d1fae5
+    classDef data fill:#020617,stroke:#64748b,color:#cbd5e1
 
-      CLIENT -- "POST /api/auth/register" --> API
-      BROWSER -- "session cookie" --> BO
-      BO -- "AuthApiClient · Bearer JWT" --> API
-      BO -- "/hangfire dashboard" --> HF
+    class EP,SEED,BO app
+    class ENF,CORE,MIG lib
+    class IDN idn
+    class DB,CACHE data
+```
 
-      API -- "Command" --> PIPE
-      PIPE -- "validated" --> CMD
-      CMD --> ENT
-      CMD -. "depends on" .-> PORT
+The library owns the `Lumen` schema and the enforcement pipeline. **You** own the catalog, the identity provider, and every enforcement point.
 
-      SEC -. "implements" .-> PORT
-      DAL -. "implements" .-> PORT
-      INT -. "implements" .-> PORT
+<p align="center">
+  <b>For more information</b> — the four inviolable principles, the full package matrix,<br/>the ADRs behind each decision and a copy-paste quick start:
+  <br><br>
+  <a href="https://github.com/KauaVilasBoas/Lumen"><img src="https://img.shields.io/badge/Read%20the%20docs-KauaVilasBoas%2FLumen-512BD4?style=for-the-badge&logo=github&logoColor=white" alt="Read the docs"/></a>
+</p>
 
-      DAL ==> |"BSON · async I/O"| DB
-      INT -. "SendAsync" .-> SMTP
-      INT -. "range API" .-> HIBP
-
-      HF --> CLEAN
-      CLEAN -. "DeleteExpiredAsync" .-> DAL
-      HF ==> |"job storage"| DB
-
-      classDef domain     fill:#512BD4,stroke:#A78BFA,color:#fff,stroke-width:2px
-      classDef pres       fill:#0b1220,stroke:#3b82f6,color:#dbeafe
-      classDef app        fill:#0b1220,stroke:#10b981,color:#d1fae5
-      classDef infra      fill:#0b1220,stroke:#f59e0b,color:#fde68a
-      classDef jobs       fill:#0b1220,stroke:#ec4899,color:#fce7f3
-      classDef external   fill:#020617,stroke:#64748b,color:#cbd5e1
-      classDef db         fill:#13aa52,stroke:#00ed64,color:#ffffff,stroke-width:3px
-
-      class ENT,PORT domain
-      class API,BO pres
-      class PIPE,CMD,QRY,EVT app
-      class SEC,DAL,INT infra
-      class HF,CLEAN jobs
-      class CLIENT,BROWSER,SMTP,HIBP external
-      class DB db
-
-      linkStyle 0  stroke:#3b82f6,stroke-width:2px
-      linkStyle 1  stroke:#3b82f6,stroke-width:2px
-      linkStyle 2  stroke:#3b82f6,stroke-width:2px
-      linkStyle 3  stroke:#ec4899,stroke-width:2px
-      linkStyle 4  stroke:#10b981,stroke-width:2px
-      linkStyle 5  stroke:#10b981,stroke-width:2px
-      linkStyle 6  stroke:#a78bfa,stroke-width:2px
-      linkStyle 7  stroke:#a78bfa,stroke-width:2px,stroke-dasharray:4 4
-      linkStyle 8  stroke:#a78bfa,stroke-width:2px,stroke-dasharray:4 4
-      linkStyle 9  stroke:#a78bfa,stroke-width:2px,stroke-dasharray:4 4
-      linkStyle 10 stroke:#a78bfa,stroke-width:2px,stroke-dasharray:4 4
-      linkStyle 11 stroke:#00ed64,stroke-width:3.5px
-      linkStyle 12 stroke:#f59e0b,stroke-width:2px,stroke-dasharray:4 4
-      linkStyle 13 stroke:#f59e0b,stroke-width:2px,stroke-dasharray:4 4
-      linkStyle 14 stroke:#ec4899,stroke-width:2px
-      linkStyle 15 stroke:#ec4899,stroke-width:2px,stroke-dasharray:4 4
-      linkStyle 16 stroke:#00ed64,stroke-width:3.5px
-  ```
-
-  <sub>**Reading the diagram** — solid arrows = in-process synchronous flow · dashed arrows = port/adapter wiring & external I/O · thick green arrows = MongoDB read/write paths · Domain (purple) has zero outgoing dependencies;
-  every other layer depends inward on it.</sub>
-
-  | Decision | Rationale |
-  |---|---|
-  | **Multi-solution Clean Architecture** | Six layer solutions (`Domain` · `Application` · `Infrastructure` · `Presentation` · `Jobs` · `SharedKernel`) aggregated by a root `.sln`. Each layer can be opened, built and reasoned
-  about in isolation. |
-  | **CQRS via MediatR with nested types** | `Command`, `Result`, `Validator` are `sealed record`s nested inside the handler. One file = one use case, fully self-contained. No anemic DTO layer between Controller and Handler. |
-  | **`ValidationBehavior<TRequest,TResponse>` pipeline** | FluentValidation runs *before* the handler. Cheap input checks fail fast; I/O-bound rules (uniqueness, HIBP) stay inside `Handle()`. |
-  | **Ports & Adapters (Dependency Inversion)** | All infrastructure contracts (`IUserRepository`, `IJwtService`, `IEmailService`, `IPasswordHasher`…) live in **Domain**. Adapters in Infrastructure are wired by DI — Domain has
-  zero external references, verified by the compiler. |
-  | **Razor Backoffice consumes its own JWT** | The MVC backoffice authenticates against the public API via a typed `AuthApiClient`, stores the JWT inside an HttpOnly cookie session, and exposes the Hangfire dashboard guarded by
-   cookie auth. |
-  | **Hangfire + Hangfire.Mongo for recurring work** | API hosts the Hangfire server; jobs are scheduled on startup. `CleanupExpiredRefreshTokensJob` deletes expired refresh tokens daily at 03:00 UTC via the same
-  `IRefreshTokenRepository` port. |
-  | **Central Package Management** | `Directory.Packages.props` is the single source of truth for 29 NuGet versions across 13 projects. Zero orphans, zero drift. |
-  | **`TreatWarningsAsErrors` + nullable enabled globally** | Quality bar enforced by the compiler from `Directory.Build.props`. No "we'll clean it up later". |
-  | **Startup-time options validation** | `ValidateDataAnnotations().ValidateOnStart()` — misconfiguration crashes on boot, never silently in production. |
-  | **Global `IExceptionHandler` → RFC 7807** | `ValidationException` → `ValidationProblemDetails` 400; `ConflictException` → 409. Consistent machine-readable errors. |
-  | **xUnit + Testcontainers integration tests** | 222 unit tests; integration suite spins up real MongoDB via Testcontainers. Tests are a first-class deliverable, not an afterthought. |
-
-  <p align="center">
-    <img src="https://img.shields.io/badge/Status-Active%20Development-43B581?style=flat-square" alt="Active"/>
-    &nbsp;
-    <img src="https://img.shields.io/badge/.NET-8-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET 8"/>
-    &nbsp;
-    <img src="https://img.shields.io/badge/Architecture-Clean%20%2B%20CQRS-A78BFA?style=flat-square" alt="Clean Architecture + CQRS"/>
-    &nbsp;
-    <img src="https://img.shields.io/badge/Mediator-MediatR-blue?style=flat-square" alt="MediatR"/>
-    &nbsp;
-    <img src="https://img.shields.io/badge/Database-MongoDB-13AA52?style=flat-square&logo=mongodb&logoColor=white" alt="MongoDB"/>
-    &nbsp;
-    <img src="https://img.shields.io/badge/Auth-JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white" alt="JWT"/>
-    &nbsp;
-    <img src="https://img.shields.io/badge/Jobs-Hangfire-EC4899?style=flat-square" alt="Hangfire"/>
-    &nbsp;
-    <img src="https://img.shields.io/badge/Tested-xUnit-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt="xUnit"/>
-  </p>
-
-  ---
+---
 
 ## Dashboard
 
@@ -253,6 +184,8 @@ Open to remote backend roles aligned with **EU**, **UK**, or **US Eastern** time
   <a href="https://www.linkedin.com/in/kau%C3%A3-vilas-boas-375357225/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
   &nbsp;
   <a href="mailto:kauacaldeira@hotmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>
+  &nbsp;
+  <a href="https://www.nuget.org/profiles/kauavilasboas"><img src="https://img.shields.io/badge/NuGet-004880?style=for-the-badge&logo=nuget&logoColor=white" alt="NuGet"/></a>
   &nbsp;
   <a href="https://github.com/KauaVilasBoas"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/></a>
 </p>
