@@ -167,13 +167,21 @@ The library owns the `Lumen` schema and the enforcement pipeline. **You** own th
 
 ## Dashboard
 
+<!-- Todos os cards tematizados no roxo .NET (#512BD4 / #A78BFA sobre #0D1117)
+     para dar identidade de marca em vez de tema genérico. -->
+
+<p align="center">
+  <img height="170" src="https://github-readme-stats.vercel.app/api?username=KauaVilasBoas&show_icons=true&hide_border=true&include_all_commits=true&count_private=true&hide_rank=false&bg_color=0D1117&title_color=A78BFA&icon_color=512BD4&text_color=c9d1d9&ring_color=A78BFA" alt="GitHub stats"/>
+  &nbsp;
+  <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=KauaVilasBoas&layout=compact&hide_border=true&langs_count=8&hide=html,css,tex&bg_color=0D1117&title_color=A78BFA&text_color=c9d1d9" alt="Top languages"/>
+</p>
+
+<p align="center">
+  <img src="https://streak-stats.demolab.com?user=KauaVilasBoas&hide_border=true&background=0D1117&stroke=30363d&ring=512BD4&fire=A78BFA&currStreakNum=c9d1d9&currStreakLabel=A78BFA&sideNums=c9d1d9&sideLabels=8b949e&dates=8b949e" alt="GitHub streak"/>
+</p>
+
 <p align="center">
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=KauaVilasBoas&theme=tokyo-night&hide_border=true&area=true&custom_title=Contribution%20Activity&bg_color=0D1117&color=A78BFA&line=512BD4&point=A78BFA" alt="Contribution activity graph" width="100%"/>
-</p>
-<p align="center">
-  <img height="200" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=KauaVilasBoas&theme=tokyonight" alt="GitHub stats"/>
-  &nbsp;
-  <img height="200" src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=KauaVilasBoas&theme=tokyonight&utcOffset=-3" alt="Productive time"/>
 </p>
 
 ---
