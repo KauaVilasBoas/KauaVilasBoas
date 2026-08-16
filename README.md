@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <i>Building regulated, high-availability systems for the Brazilian public health sector —<br/>and shipping the reusable pieces to NuGet.</i>
+  <i>Building regulated, high-availability systems for the Brazilian public health sector.<br/>Shipping the reusable pieces to NuGet.</i>
 </p>
 
 <p align="center">
@@ -28,9 +28,9 @@
 
 ## About
 
-Three years of production experience in the .NET ecosystem. My day-to-day is designing modular monoliths that serve health-surveillance regulatory workflows for state government — systems where domain correctness, traceability, and auditability matter more than novelty.
+Three years of production experience in the .NET ecosystem. My day-to-day is designing modular monoliths that serve health-surveillance regulatory workflows for state government: systems where domain correctness, traceability, and auditability matter more than novelty.
 
-Outside of work I maintain **[Lumen](https://github.com/KauaVilasBoas/Lumen)**, a family of authorization and identity libraries for ASP.NET Core published on NuGet. It isn't a demo repository: it's versioned independently, documented with ADRs, and consumed in production by a multi-tenant laboratory system serving a real pharmacology lab. Having a real consumer is what keeps it honest — every generic API in it was paid for by a concrete requirement, not invented in a vacuum.
+Outside of work I maintain **[Lumen](https://github.com/KauaVilasBoas/Lumen)**, a family of authorization and identity libraries for ASP.NET Core published on NuGet. It isn't a demo repository: it's versioned independently, documented with ADRs, and consumed in production by a multi-tenant laboratory system serving a real pharmacology lab. Having a real consumer is what keeps it honest. Every generic API in it was paid for by a concrete requirement, not invented in a vacuum.
 
 I default to **Clean Architecture**, **Domain-Driven Design**, and **CQRS** where they earn their place. Unit and integration tests are part of *done*, not an afterthought.
 
@@ -88,13 +88,10 @@ Open to remote backend roles aligned with **EU**, **UK**, or **US Eastern** time
 
 > *Architecture is the set of constraints I impose now to make change easier later.*
 
-- **Dependency direction matters more than folder structure.** Layers are a side effect; the real rule is that the Domain depends on nothing — everything else is consequence.
+- **Dependency direction matters more than folder structure.** Layers are a side effect; the real rule is that the Domain depends on nothing. Everything else is consequence.
 - **If a boundary isn't tested, it doesn't exist.** Module isolation and dependency rules are asserted by NetArchTest/ArchUnit suites that fail the build. Documentation drifts; a red test doesn't.
-- **A library earns its abstractions from a real consumer.** Generic APIs invented in a vacuum are guesses. Every extension point in Lumen exists because a shipping system needed it — and I wrote down *why* in an ADR.
-- **Adding a package must never change existing behaviour.** A library that silently enforces something on install is a library you can't adopt incrementally.
-- **Misconfiguration in production is silent until it isn't.** I validate options at startup. The app either boots correctly, or it crashes loudly. There is no third state.
+- **A library earns its abstractions from a real consumer.** Generic APIs invented in a vacuum are guesses. Every extension point in Lumen exists because a shipping system needed it, and I wrote down *why* in an ADR.
 - **A modular monolith ships faster than a half-baked microservice.** Distribution is a cost, not a feature. I make it a deliberate choice, never a default.
-- **Logs are an API for your future self under stress.** Structure them, name them, treat breaking changes seriously.
 
 ---
 
@@ -114,7 +111,7 @@ Open to remote backend roles aligned with **EU**, **UK**, or **US Eastern** time
 
 > Every ASP.NET Core app ends up hand-rolling the same thing: a permissions table, a join to roles, an `[Authorize]` policy per endpoint, and a half-finished admin screen nobody wants to own. Lumen packages that. Decorate an action with `[RequirePermission]`, mount an admin console at `/lumen`, and keep full ownership of your permission catalog.
 >
-> **11 packages across three families — 5,000+ downloads in the first two weeks after launch.** SQL Server and PostgreSQL, Redis or in-memory caching, and a consumer in production keeping the API honest.
+> **11 packages across three families. 5,000+ downloads in the first two weeks after launch.** SQL Server and PostgreSQL, Redis or in-memory caching, and a consumer in production keeping the API honest.
 
 ### How it plugs in
 
@@ -158,7 +155,7 @@ flowchart LR
 The library owns the `Lumen` schema and the enforcement pipeline. **You** own the catalog, the identity provider, and every enforcement point.
 
 <p align="center">
-  <b>For more information</b> — the four inviolable principles, the full package matrix,<br/>the ADRs behind each decision and a copy-paste quick start:
+  <b>For more information</b> on the four inviolable principles, the full package matrix,<br/>the ADRs behind each decision and a copy-paste quick start:
   <br><br>
   <a href="https://github.com/KauaVilasBoas/Lumen"><img src="https://img.shields.io/badge/Read%20the%20docs-KauaVilasBoas%2FLumen-512BD4?style=for-the-badge&logo=github&logoColor=white" alt="Read the docs"/></a>
 </p>
@@ -167,21 +164,18 @@ The library owns the `Lumen` schema and the enforcement pipeline. **You** own th
 
 ## Dashboard
 
-<!-- Todos os cards tematizados no roxo .NET (#512BD4 / #A78BFA sobre #0D1117)
-     para dar identidade de marca em vez de tema genérico. -->
-
 <p align="center">
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=KauaVilasBoas&show_icons=true&hide_border=true&include_all_commits=true&count_private=true&hide_rank=false&bg_color=0D1117&title_color=A78BFA&icon_color=512BD4&text_color=c9d1d9&ring_color=A78BFA" alt="GitHub stats"/>
+  <img height="170" src="https://raw.githubusercontent.com/KauaVilasBoas/KauaVilasBoas/main/profile/stats.svg" alt="GitHub stats"/>
   &nbsp;
-  <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=KauaVilasBoas&layout=compact&hide_border=true&langs_count=8&hide=html,css,tex&bg_color=0D1117&title_color=A78BFA&text_color=c9d1d9" alt="Top languages"/>
+  <img height="170" src="https://raw.githubusercontent.com/KauaVilasBoas/KauaVilasBoas/main/profile/top-langs.svg" alt="Top languages"/>
 </p>
 
 <p align="center">
-  <img src="https://streak-stats.demolab.com?user=KauaVilasBoas&hide_border=true&background=0D1117&stroke=30363d&ring=512BD4&fire=A78BFA&currStreakNum=c9d1d9&currStreakLabel=A78BFA&sideNums=c9d1d9&sideLabels=8b949e&dates=8b949e" alt="GitHub streak"/>
+  <img src="https://raw.githubusercontent.com/KauaVilasBoas/KauaVilasBoas/main/profile/streak.svg" alt="GitHub streak"/>
 </p>
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=KauaVilasBoas&theme=tokyo-night&hide_border=true&area=true&custom_title=Contribution%20Activity&bg_color=0D1117&color=A78BFA&line=512BD4&point=A78BFA" alt="Contribution activity graph" width="100%"/>
+  <img src="https://raw.githubusercontent.com/KauaVilasBoas/KauaVilasBoas/main/profile/isocalendar.svg" alt="Contribution calendar" width="62%"/>
 </p>
 
 ---
