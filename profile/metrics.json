@@ -1,0 +1,41 @@
+{
+  "nuget": {
+    "query": "Lumen",
+    "prefix": "Lumen.",
+    "owner": "kauavilasboas",
+    "last": 9028
+  },
+  "tiles": [
+    {
+      "value": "4",
+      "label": "products in production",
+      "sub": "real users, real data",
+      "source": "Segue o Lead, SISLAB, Lumen (via SISLAB), SGF Li Joias"
+    },
+    {
+      "value": "{nuget}",
+      "label": "NuGet downloads",
+      "sub": "Lumen · 11 packages",
+      "live": true,
+      "source": "NuGet search API"
+    },
+    {
+      "value": "3.5k+",
+      "label": "automated tests",
+      "sub": "across public repos",
+      "source": "Normetry 1,527 (core 523, ai 674, web 330) + SISLAB ~1,100 + Spotify Data Analysis 891"
+    },
+    {
+      "value": "0.934",
+      "label": "retrieval recall@10",
+      "sub": "Normetry · eval in CI",
+      "source": "Normetry retrieval eval, re-ranked result without documents"
+    },
+    {
+      "value": "37",
+      "label": "ADRs written",
+      "sub": "big calls, on record",
+      "source": "Normetry 13 + Segue o Lead 17 + Lumen 7"
+    }
+  ]
+}

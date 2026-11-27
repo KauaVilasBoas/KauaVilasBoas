@@ -1,209 +1,115 @@
-<!-- ============================================================ -->
-<!--                         HEADER                                -->
-<!-- ============================================================ -->
+<a id="top"></a>
 
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,2,30&height=220&section=header&text=Kau%C3%A3%20Vilas%20Boas&fontSize=58&fontAlignY=38&fontColor=ffffff&animation=fadeIn&desc=Backend%20Engineer%20%C2%B7%20.NET%20%2F%20C%23&descSize=22&descAlignY=60" alt="header"/>
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="profile/banner-dark.svg">
+  <img src="profile/banner-light.svg" width="100%" alt="Kauã Vilas Boas. Backend engineer, .NET and applied AI, regulated domains. Based in Salvador, Brazil (UTC−3), working hours overlap with the EU, the UK and the US East Coast, open to remote backend and AI roles.">
+</picture>
 
-<p align="center">
-  <i>Building regulated, high-availability systems for the Brazilian public health sector.<br/>Shipping the reusable pieces to NuGet.</i>
-</p>
+I build software for fields where a wrong answer costs something: health surveillance, lab research, food-safety compliance and car sales. Four of the products below are in production. Two of them put LLMs to work, and the newest checks every answer against its source.
 
-<p align="center">
-  <a href="https://www.linkedin.com/in/kau%C3%A3-vilas-boas-375357225/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
-  &nbsp;
-  <a href="mailto:kauacaldeira@hotmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>
-  &nbsp;
-  <a href="https://www.nuget.org/profiles/kauavilasboas"><img src="https://img.shields.io/badge/NuGet-004880?style=for-the-badge&logo=nuget&logoColor=white" alt="NuGet"/></a>
-  &nbsp;
-  <img src="https://img.shields.io/badge/Salvador%2C%20BR-UTC%E2%88%923-512BD4?style=for-the-badge" alt="Location"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/Open%20to%20Remote-43B581?style=for-the-badge" alt="Remote"/>
-</p>
+At my day job at Branef, four years into my career, I build health-surveillance and public-health systems for Brazilian state governments, in C# and .NET on SQL Server.
+
+**[kauacaldeira@hotmail.com](mailto:kauacaldeira@hotmail.com)** · [LinkedIn](https://www.linkedin.com/in/kauavilasboas) · [NuGet](https://www.nuget.org/profiles/kauavilasboas)
 
 <br>
 
----
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="profile/metrics-dark.svg">
+  <img src="profile/metrics-light.svg" width="100%" alt="Metrics: 4 products in production; 9,028 NuGet downloads; 3.5k+ automated tests; 0.934 retrieval recall@10; 37 ADRs written">
+</picture>
 
-## About
+<sub>Sources: [NuGet profile](https://www.nuget.org/profiles/kauavilasboas) · [Normetry eval reports](https://github.com/KauaVilasBoas/Normetry/tree/main/evals/reports) · [Normetry ADRs](https://github.com/KauaVilasBoas/Normetry/tree/main/docs/adr) · [Lumen ADRs](https://github.com/KauaVilasBoas/Lumen/tree/main/docs/adr). The card is redrawn every night by [a small workflow](.github/workflows/metrics.yml).</sub>
 
-I have three years of production experience with .NET. At work I design modular monoliths for state-government health-surveillance workflows, where the domain has to be correct, traceable, and auditable.
+## Running in production
 
-Outside of work I maintain [Lumen](https://github.com/KauaVilasBoas/Lumen), a family of authorization and identity libraries for ASP.NET Core published on NuGet. Each package is versioned on its own, its decisions are recorded in ADRs, and a multi-tenant system for a pharmacology lab runs it in production. Every generic API in it started as a requirement from that system.
+<a href="https://segueolead.com.br"><img align="right" width="44%" src="profile/shots/segue-o-lead.png" alt="Segue o Lead website"></a>
 
-I default to Clean Architecture, Domain-Driven Design, and CQRS where they earn their place, and a change is done when its unit and integration tests are.
+### [Segue o Lead](https://segueolead.com.br) · ● live
 
-Open to remote backend roles in EU, UK, or US Eastern time zones.
+An AI sales agent on WhatsApp for car dealerships. It answers every lead from the store's real stock and sends photos of the cars. When a lead is ready to buy, it hands the conversation to the salesperson on shift.
 
----
+In its first 33 days live it handled 175 conversations and passed 66 qualified leads to sales. 49% of those conversations came in while the store was closed.
 
-## Core expertise
+`.NET 8` `modular monolith, 10 modules` `transactional outbox` `PostgreSQL RLS` `Claude API` `17 ADRs` · private repository
 
-<table align="center">
-  <tr>
-    <td align="center" valign="top" width="240">
-      <b>Core</b>
-      <br><br>
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" width="44" alt="C#"/>
-      &nbsp;&nbsp;
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" width="44" alt=".NET"/>
-      <br><br>
-      <sub>C# · .NET 8 · ASP.NET Core · EF Core · Dapper</sub>
-    </td>
-    <td align="center" valign="top" width="240">
-      <b>Data</b>
-      <br><br>
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" width="44" alt="SQL Server"/>
-      &nbsp;&nbsp;
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="44" alt="PostgreSQL"/>
-      &nbsp;&nbsp;
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" width="44" alt="Redis"/>
-      <br><br>
-      <sub>SQL Server · PostgreSQL · MongoDB · Redis</sub>
-    </td>
-    <td align="center" valign="top" width="240">
-      <b>Infra</b>
-      <br><br>
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="44" alt="Docker"/>
-      &nbsp;&nbsp;
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" width="44" alt="Terraform"/>
-      &nbsp;&nbsp;
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="44" alt="AWS"/>
-      <br><br>
-      <sub>Docker · Terraform · AWS · Jenkins · GitHub Actions</sub>
-    </td>
-  </tr>
-</table>
+<!-- TESTIMONIAL: one line from the dealership owner goes here, as a blockquote. -->
 
-<p align="center">
-  <sub><b>Practices</b> &nbsp;·&nbsp; Clean Architecture &nbsp;·&nbsp; DDD &nbsp;·&nbsp; CQRS &nbsp;·&nbsp; Outbox &nbsp;·&nbsp; SOLID &nbsp;·&nbsp; xUnit &nbsp;·&nbsp; Testcontainers &nbsp;·&nbsp; architecture testing</sub>
-  <br>
-  <sub><b>Currently exploring</b> &nbsp;·&nbsp; distributed systems &nbsp;·&nbsp; system design at scale &nbsp;·&nbsp; observability patterns</sub>
-</p>
+<br clear="right">
 
----
+<a href="https://sislab-gamma.vercel.app/login"><img align="right" width="44%" src="https://raw.githubusercontent.com/KauaVilasBoas/SISLAB/main/docs/screenshots/dilution-calculator.png" alt="SISLAB serial-dilution calculator"></a>
 
-## Engineering principles
+### [SISLAB](https://github.com/KauaVilasBoas/SISLAB) · ● live demo
 
-> *Architecture is the set of constraints I impose now to make change easier later.*
+Lab management for a pharmacology research lab that used to run on spreadsheets. The dose and dilution math that people worked out by hand now lives in the domain model, configured per lab.
 
-- **Dependency direction matters more than folder structure.** The layers follow from one rule: the Domain depends on nothing.
-- **If a boundary isn't tested, it doesn't exist.** NetArchTest and ArchUnit suites check module isolation and dependency rules, and they fail the build when one breaks. A rule written only in the docs drifts without anyone noticing.
-- **A library earns its abstractions from a real consumer.** Every extension point in Lumen exists because a shipping system needed it, and an ADR records why.
-- **A modular monolith ships faster than a half-baked microservice.** Splitting a service out adds network calls, deployments, and failure modes, so I do it only when a requirement asks for it.
+`.NET 8` `modular monolith, 7 bounded contexts` `~1.1k tests` `69 architecture rules` `React`
 
----
+[Live demo](https://sislab-gamma.vercel.app/login) · [Repository](https://github.com/KauaVilasBoas/SISLAB)
 
-## Currently building
+<br clear="right">
 
-### [Normetry](https://github.com/KauaVilasBoas/Normetry) &nbsp;·&nbsp; <sub>Multi-tenant compliance copilot for regulated establishments</sub>
+<a href="https://github.com/KauaVilasBoas/Lumen"><img align="right" width="44%" src="https://raw.githubusercontent.com/KauaVilasBoas/Lumen/main/docs/screenshots/backoffice-profile-permissions.png" alt="Lumen admin console, editing a profile's permissions"></a>
 
-<p>
-  <a href="https://github.com/KauaVilasBoas/Normetry/actions/workflows/ci.yml"><img src="https://github.com/KauaVilasBoas/Normetry/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"/></a>
-  &nbsp;
-  <a href="https://github.com/KauaVilasBoas/Normetry/releases"><img src="https://img.shields.io/github/v/release/KauaVilasBoas/Normetry?label=release&color=3FB950" alt="Latest release"/></a>
-  &nbsp;
-  <img src="https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white" alt=".NET 10"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/Python-3.12+-3776AB?logo=python&logoColor=white" alt="Python 3.12+"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/PostgreSQL-pgvector%20%C2%B7%20RLS-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL with pgvector and RLS"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/LangGraph-agents-1C3C3C?logo=langchain&logoColor=white" alt="LangGraph"/>
-</p>
+### [Lumen](https://github.com/KauaVilasBoas/Lumen) · ● 9k+ downloads
 
-> A restaurant manager has to follow a food-safety code that runs to hundreds of pages, and the evidence sits in a binder of SOPs, licenses, and temperature logs that nobody re-reads. Normetry reads the establishment's documents against the regulation. Every claim it makes cites an article and, when the claim is about the establishment, the passage of its document that backs the claim.
->
-> **Three jurisdictions (FDA Food Code, EU 852/2004, Anvisa RDC 216/2004), questions in Portuguese or English, 131 inspection checklist items.** I build it in public, one phase at a time. The cited regulation chat and the simulated inspection work today, and the regulation change monitor comes next.
+Permission-based authorization and identity for ASP.NET Core. You mark an endpoint with `[RequirePermission]` and mount an admin console at `/lumen`, and the permission catalog and the identity provider stay yours. SISLAB runs on it in production.
 
-### How it's built
+`11 NuGet packages` `SQL Server or PostgreSQL` `Redis cache` `7 ADRs`
 
-- A .NET 10 core (DDD, CQRS, EF Core, outbox, YARP, SignalR) owns the business logic and is the only public entry point. A Python service (FastAPI, LangGraph) owns the AI, and only the gateway can reach it.
-- Retrieval is written by hand: pgvector and PostgreSQL full-text search, fused with Reciprocal Rank Fusion, then a multilingual re-ranker. The model answers in structured JSON, and a deterministic guard drops any claim whose quote isn't in a retrieved chunk.
-- PostgreSQL Row-Level Security covers every tenant-owned table. The tenant comes from the validated JWT and is set per transaction, so even a buggy query can't return another tenant's rows.
-- Every pull request that touches retrieval, ingestion, or the datasets runs the retrieval eval, and CI fails when recall or MRR drops below its floor.
+[NuGet](https://www.nuget.org/packages/Lumen.Authorization) · [Quick start](https://github.com/KauaVilasBoas/Lumen#quick-start)
 
-```mermaid
-flowchart LR
-    WEB["🖥️ Web app<br/><sub>React · TypeScript</sub>"]
+<br clear="right">
 
-    subgraph CORE["🟣 Core · .NET 10"]
-        API["API<br/><sub>DDD · CQRS · outbox</sub>"]
-        YARP["YARP gateway<br/><sub>/ai/* routes</sub>"]
-    end
+<img align="right" width="44%" src="profile/shots/sgf.svg" alt="SGF dashboard">
 
-    subgraph AI["🐍 AI service · Python"]
-        CHAT["FastAPI<br/><sub>cited chat · SSE</sub>"]
-        AGENT["LangGraph<br/><sub>simulated inspection</sub>"]
-    end
+### SGF · Li Joias · ● in production since Dec 2024
 
-    PG[("PostgreSQL<br/><sub>pgvector · full-text · RLS</sub>")]
-    MQ[["RabbitMQ"]]
-    LLM["Claude"]
+Financial management for Li Joias, a jewelry retailer, built at Branef. It covers payables, receivables, installments, cash flow and inventory, and it has run the store's finances for two years.
 
-    WEB -->|JWT| API
-    WEB -->|SSE| YARP
-    YARP -->|internal token| CHAT
-    API --> PG
-    API <-->|events| MQ
-    MQ <--> AGENT
-    CHAT --> PG
-    AGENT --> PG
-    CHAT --> LLM
-    AGENT --> LLM
+`Java 17` `Spring Boot 3` `MySQL` `React` `Docker` `GitHub Actions deploys` · private repository
 
-    classDef core fill:#0b1220,stroke:#8b5cf6,color:#ede9fe
-    classDef ai   fill:#0b1220,stroke:#10b981,color:#d1fae5
-    classDef edge fill:#0b1220,stroke:#3b82f6,color:#dbeafe
-    classDef data fill:#020617,stroke:#64748b,color:#cbd5e1
+<br clear="right">
 
-    class API,YARP core
-    class CHAT,AGENT ai
-    class WEB,LLM edge
-    class PG,MQ data
-```
+## Building now
 
-Only .NET writes the `core` schema and only Python writes the `ai` schema. AI results such as findings and document status reach the core as queue events.
+<a href="https://github.com/KauaVilasBoas/Normetry"><img src="profile/shots/normetry-demo.svg" width="100%" alt="Normetry answering a food-safety question with citations to the regulation"></a>
 
-<p align="center">
-  The repository covers the architecture, the ADRs behind each decision,<br/>the eval reports, and how to run it locally:
-  <br><br>
-  <a href="https://github.com/KauaVilasBoas/Normetry"><img src="https://img.shields.io/badge/Read%20the%20docs-KauaVilasBoas%2FNormetry-512BD4?style=for-the-badge&logo=github&logoColor=white" alt="Read the docs"/></a>
-</p>
+### [Normetry](https://github.com/KauaVilasBoas/Normetry) · compliance copilot for food service
+
+Normetry reads a restaurant's own SOPs and logs against the food code (FDA Food Code, EU 852/2004, Anvisa RDC 216/2004). For every claim it cites the article, and the passage of the restaurant's document behind it. Before a claim reaches the user, a check confirms that its quote really is in the source, and drops it otherwise.
+
+`.NET 10 core` `Python AI service (FastAPI, LangGraph)` `hybrid search with re-ranking` `PostgreSQL RLS` `1,527 tests` `recall@10 0.934, MRR 0.883` `13 ADRs`
+
+Next: a regulation change monitor, an MCP server and the Azure deploy. [Architecture](https://github.com/KauaVilasBoas/Normetry#architecture-at-a-glance) · [Eval reports](https://github.com/KauaVilasBoas/Normetry/tree/main/evals/reports) · [Roadmap](https://github.com/KauaVilasBoas/Normetry#roadmap)
+
+## Decisions worth reading
+
+Each one is a short document, most of them a five-minute read.
+
+- **Segue o Lead: why a lead waited up to 40 seconds for a reply.** About half of the wait was polling and debounce in the queue, about 9 seconds was the model, and the prompt cache hit rate couldn't be measured yet. *Write-up in progress.*
+- **[Spotify Data Analysis: deleting a feature that made the model 0.12% worse](https://github.com/KauaVilasBoas/Spotify-Data-Analysis#what-is-this).** A block of features stays only if it improves the error by 2% on its own, and that rule is code.
+- **[Normetry, ADR 013: the simulated inspection checks a fixed checklist of 131 items](https://github.com/KauaVilasBoas/Normetry/blob/main/docs/adr/013-inspection-checks-a-curated-checklist.md).** A fixed list gives precision and recall a fixed denominator, and a run costs one model call per item.
+- **[Lumen, ADR-0007: four rules that keep a library generic](https://github.com/KauaVilasBoas/Lumen/blob/main/docs/adr/0007-authz-3.0-generic-library.md).** No seed data, no global enforcement, no Users table and no code written for one consumer.
+- **[SISLAB: the active lab lives in a cookie, never in the JWT](https://github.com/KauaVilasBoas/SISLAB#highlights).** Every request checks it against the user's memberships again, and every query filters by it.
+
+## Also built
+
+- **[Spotify Data Analysis](https://github.com/KauaVilasBoas/Spotify-Data-Analysis)**: a data-analysis exercise taken all the way to a system, with idempotent ingestion, a served model and a recommender that explains its picks over 89,740 tracks. Its error is 33.1% below the baseline, and it has 891 tests.
+- **PsychoGuard** (private, early): psychosocial-risk management under Brazil's NR-1, with surveys, a risk inventory, action plans and an ethics hotline for each company. .NET 8 and React.
+
+[All repositories](https://github.com/KauaVilasBoas?tab=repositories)
+
+## Stack
+
+**Backend** · C# ● · .NET 8 and 10 ● · ASP.NET Core ● · EF Core ● · Dapper ● · NHibernate ● · Java with Spring Boot ●<br>
+**AI** · Claude API ● · Python · FastAPI · LangGraph · RAG with hybrid search and re-ranking · evals in CI<br>
+**Data** · SQL Server ● · PostgreSQL with RLS ● · pgvector · MySQL ● · Redis<br>
+**Platform** · Docker ● · GitHub Actions ● · Hangfire ● · Keycloak ● · RabbitMQ · OpenTelemetry · .NET Aspire<br>
+**Front end** · React ● · TypeScript ●<br>
+**Practices** · DDD · CQRS · modular monolith · transactional outbox · multi-tenancy · architecture tests · ADRs
+
+<sub>● in production. Everything else is used in a public repository above.</sub>
 
 ---
 
-## Dashboard
-
-<p align="center">
-  <img height="170" src="https://raw.githubusercontent.com/KauaVilasBoas/KauaVilasBoas/main/profile/stats.svg" alt="GitHub stats"/>
-  &nbsp;
-  <img height="170" src="https://raw.githubusercontent.com/KauaVilasBoas/KauaVilasBoas/main/profile/top-langs.svg" alt="Top languages"/>
-</p>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/KauaVilasBoas/KauaVilasBoas/main/profile/streak.svg" alt="GitHub streak"/>
-</p>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/KauaVilasBoas/KauaVilasBoas/main/profile/isocalendar.svg" alt="Contribution calendar" width="62%"/>
-</p>
-
----
-
-## Connect
-
-<p align="center">
-  <a href="https://www.linkedin.com/in/kau%C3%A3-vilas-boas-375357225/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
-  &nbsp;
-  <a href="mailto:kauacaldeira@hotmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>
-  &nbsp;
-  <a href="https://www.nuget.org/profiles/kauavilasboas"><img src="https://img.shields.io/badge/NuGet-004880?style=for-the-badge&logo=nuget&logoColor=white" alt="NuGet"/></a>
-  &nbsp;
-  <a href="https://github.com/KauaVilasBoas"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/></a>
-</p>
-
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,2,30&height=100&section=footer" alt="footer"/>
-</p>
+<sub>**Now** (updated <!--updated-->27 Nov 2026<!--/updated-->): shipping phase 3 of Normetry, cutting Segue o Lead's reply time and writing up the 40-second reply. Reach me at [kauacaldeira@hotmail.com](mailto:kauacaldeira@hotmail.com) or on [LinkedIn](https://www.linkedin.com/in/kauavilasboas). [Back to top](#top)</sub>

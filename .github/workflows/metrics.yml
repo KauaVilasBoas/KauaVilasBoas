@@ -1,0 +1,43 @@
+name: Profile metrics
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  push:
+    branches: [main]
+    paths: [".github/scripts/metrics.py", "profile/metrics.json", ".github/workflows/metrics.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-metrics
+  cancel-in-progress: false
+
+jobs:
+  metrics:
+    name: Draw the metrics card
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Draw metrics and stamp the date
+        run: python .github/scripts/metrics.py
+
+      - name: Commit when something changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile/metrics-dark.svg profile/metrics-light.svg profile/metrics.json README.md
+          if git diff --cached --quiet; then
+            echo "No change."
+            exit 0
+          fi
+          git commit -m "chore(profile): refresh metrics card"
+          git pull --rebase origin main
+          git push

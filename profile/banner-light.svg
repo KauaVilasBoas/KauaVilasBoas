@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="200" viewBox="0 0 1000 200" role="img" aria-label="Kauã Vilas Boas, backend engineer, .NET and applied AI, regulated domains">
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#512bd4" stroke-opacity=".07"/>
+    </pattern>
+  </defs>
+  <rect width="1000" height="200" rx="12" fill="#ffffff"/>
+  <rect width="1000" height="200" rx="12" fill="url(#grid)"/>
+  <rect x="0.5" y="0.5" width="999" height="199" rx="12" fill="none" stroke="#d0d7de"/>
+  <rect x="0" y="28" width="5" height="144" fill="#512bd4"/>
+  <text x="44" y="98" font-family="'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif" font-size="56" font-weight="800" letter-spacing="-1.5" fill="#1f2328">Kauã Vilas Boas</text>
+  <text x="46" y="138" font-family="SFMono-Regular,Consolas,Menlo,monospace" font-size="17" fill="#5b3fd6">backend engineer · .NET &amp; applied AI · regulated domains</text>
+  <g font-family="SFMono-Regular,Consolas,Menlo,monospace" font-size="14">
+    <text x="690" y="74" fill="#8c959f">based</text>
+    <text x="772" y="74" fill="#1f2328">Salvador, BR · UTC−3</text>
+    <text x="690" y="102" fill="#8c959f">overlap</text>
+    <text x="772" y="102" fill="#1f2328">EU · UK · US-East</text>
+    <text x="690" y="130" fill="#8c959f">open to</text>
+    <text x="772" y="130" fill="#1f2328">remote backend / AI</text>
+  </g>
+</svg>
