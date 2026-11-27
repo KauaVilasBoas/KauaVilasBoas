@@ -97,6 +97,83 @@ Open to remote backend roles aligned with **EU**, **UK**, or **US Eastern** time
 
 ## Currently Building
 
+### [Normetry](https://github.com/KauaVilasBoas/Normetry) &nbsp;·&nbsp; <sub>Multi-tenant compliance copilot for regulated establishments</sub>
+
+<p>
+  <a href="https://github.com/KauaVilasBoas/Normetry/actions/workflows/ci.yml"><img src="https://github.com/KauaVilasBoas/Normetry/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"/></a>
+  &nbsp;
+  <a href="https://github.com/KauaVilasBoas/Normetry/releases"><img src="https://img.shields.io/github/v/release/KauaVilasBoas/Normetry?label=release&color=3FB950" alt="Latest release"/></a>
+  &nbsp;
+  <img src="https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white" alt=".NET 10"/>
+  &nbsp;
+  <img src="https://img.shields.io/badge/Python-3.12+-3776AB?logo=python&logoColor=white" alt="Python 3.12+"/>
+  &nbsp;
+  <img src="https://img.shields.io/badge/PostgreSQL-pgvector%20%C2%B7%20RLS-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL with pgvector and RLS"/>
+  &nbsp;
+  <img src="https://img.shields.io/badge/LangGraph-agents-1C3C3C?logo=langchain&logoColor=white" alt="LangGraph"/>
+</p>
+
+> A restaurant manager has to follow a food-safety code that runs to hundreds of pages, while the evidence sits in a binder of SOPs, licenses and temperature logs nobody re-reads. Normetry reads the establishment's own documents against the regulation. Every claim it makes cites an article and, when the claim is about the establishment, a passage of the establishment's own document.
+>
+> **Three jurisdictions (FDA Food Code, EU 852/2004, Anvisa RDC 216/2004), questions in Portuguese or English, 131 inspection checklist items.** Built in public, one phase at a time: the cited regulation chat and the simulated inspection work today, and the regulation change monitor is next.
+
+### How it's built
+
+- **Two services with one boundary.** A .NET 10 core (DDD, CQRS, EF Core, outbox, YARP, SignalR) owns the business logic and is the only way in. A Python service (FastAPI, LangGraph) owns the AI and is reachable only through the gateway.
+- **Citations a guard can check.** Retrieval is written by hand: pgvector and PostgreSQL full-text, fused with Reciprocal Rank Fusion, then a multilingual re-ranker. The model answers in structured JSON, and a deterministic guard drops any claim whose quote isn't in a retrieved chunk.
+- **Tenant isolation in the database.** Row-Level Security on every tenant-owned table, with the tenant set per transaction from the validated JWT, so even a buggy query can't return another tenant's rows.
+- **Evals in CI.** Every pull request that touches retrieval, ingestion or the datasets runs the retrieval eval and fails below its recall and MRR floors.
+
+```mermaid
+flowchart LR
+    WEB["🖥️ Web app<br/><sub>React · TypeScript</sub>"]
+
+    subgraph CORE["🟣 Core · .NET 10"]
+        API["API<br/><sub>DDD · CQRS · outbox</sub>"]
+        YARP["YARP gateway<br/><sub>/ai/* routes</sub>"]
+    end
+
+    subgraph AI["🐍 AI service · Python"]
+        CHAT["FastAPI<br/><sub>cited chat · SSE</sub>"]
+        AGENT["LangGraph<br/><sub>simulated inspection</sub>"]
+    end
+
+    PG[("PostgreSQL<br/><sub>pgvector · full-text · RLS</sub>")]
+    MQ[["RabbitMQ"]]
+    LLM["Claude"]
+
+    WEB -->|JWT| API
+    WEB -->|SSE| YARP
+    YARP -->|internal token| CHAT
+    API --> PG
+    API <-->|events| MQ
+    MQ <--> AGENT
+    CHAT --> PG
+    AGENT --> PG
+    CHAT --> LLM
+    AGENT --> LLM
+
+    classDef core fill:#0b1220,stroke:#8b5cf6,color:#ede9fe
+    classDef ai   fill:#0b1220,stroke:#10b981,color:#d1fae5
+    classDef edge fill:#0b1220,stroke:#3b82f6,color:#dbeafe
+    classDef data fill:#020617,stroke:#64748b,color:#cbd5e1
+
+    class API,YARP core
+    class CHAT,AGENT ai
+    class WEB,LLM edge
+    class PG,MQ data
+```
+
+Only .NET writes the `core` schema and only Python writes the `ai` schema. AI results such as findings and document status reach the core as queue events.
+
+<p align="center">
+  <b>For more information</b> on the architecture, the ADRs behind each decision,<br/>the eval reports and how to run it locally:
+  <br><br>
+  <a href="https://github.com/KauaVilasBoas/Normetry"><img src="https://img.shields.io/badge/Read%20the%20docs-KauaVilasBoas%2FNormetry-512BD4?style=for-the-badge&logo=github&logoColor=white" alt="Read the docs"/></a>
+</p>
+
+<br>
+
 ### [Lumen](https://github.com/KauaVilasBoas/Lumen) &nbsp;·&nbsp; <sub>Plug-in authorization & identity for ASP.NET Core</sub>
 
 <p>
