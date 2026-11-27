@@ -37,5 +37,80 @@
       "sub": "big calls, on record",
       "source": "Normetry 13 + Segue o Lead 17 + Lumen 7"
     }
+  ],
+  "stack": [
+    {
+      "label": "Backend",
+      "production": [
+        "C#",
+        ".NET 8 · 10",
+        "ASP.NET Core",
+        "EF Core",
+        "Dapper",
+        "NHibernate",
+        "Java · Spring Boot"
+      ],
+      "public": []
+    },
+    {
+      "label": "AI",
+      "production": [
+        "Claude API"
+      ],
+      "public": [
+        "Python",
+        "FastAPI",
+        "LangGraph",
+        "RAG · hybrid search · re-ranking",
+        "evals in CI"
+      ]
+    },
+    {
+      "label": "Data",
+      "production": [
+        "SQL Server",
+        "PostgreSQL · RLS",
+        "MySQL"
+      ],
+      "public": [
+        "pgvector",
+        "Redis"
+      ]
+    },
+    {
+      "label": "Platform",
+      "production": [
+        "Docker",
+        "GitHub Actions",
+        "Hangfire",
+        "Keycloak"
+      ],
+      "public": [
+        "RabbitMQ",
+        "OpenTelemetry",
+        ".NET Aspire"
+      ]
+    },
+    {
+      "label": "Front end",
+      "production": [
+        "React",
+        "TypeScript"
+      ],
+      "public": []
+    },
+    {
+      "label": "Practices",
+      "production": [],
+      "public": [
+        "DDD",
+        "CQRS",
+        "modular monolith",
+        "transactional outbox",
+        "multi-tenancy",
+        "architecture tests",
+        "ADRs"
+      ]
+    }
   ]
 }

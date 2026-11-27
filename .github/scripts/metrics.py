@@ -1,8 +1,8 @@
-"""Draws profile/metrics-dark.svg and profile/metrics-light.svg from profile/metrics.json.
+"""Draws the profile's metrics and stack cards, dark and light, from profile/metrics.json.
 
 The NuGet download total is fetched live; every other tile is a fixed value with its
-source named in metrics.json. The script also rewrites the metrics image's alt text and
-the "updated" date in README.md, so the numbers stay readable to search and screen readers.
+source named in metrics.json. The script also rewrites both images' alt text and the
+"updated" date in README.md, so the content stays readable to search and screen readers.
 """
 
 import datetime
@@ -45,6 +45,11 @@ ROWS = (
 )  # tiles per row: two rows stay readable when GitHub shrinks the image on a phone
 SANS = "'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif"
 MONO = "SFMono-Regular,Consolas,Menlo,monospace"
+# Stack card. Chip widths are estimated from a monospace advance of 0.6em, so the
+# text stays centered whatever monospace font the viewer has.
+CHIP_FONT, CHIP_HEIGHT, CHIP_GAP, CHIP_PAD, DOT_SPACE = 14, 30, 8, 12, 14
+CHAR_WIDTH = CHIP_FONT * 0.6
+CHIPS_LEFT, GROUP_GAP = 156, 20
 
 
 def nuget_downloads(nuget):
@@ -126,13 +131,102 @@ def draw(tiles, colors, footer):
     return "\n".join(parts) + "\n"
 
 
+def chip_width(name, production):
+    return len(name) * CHAR_WIDTH + 2 * CHIP_PAD + (DOT_SPACE if production else 0)
+
+
+def draw_chip(x, y, name, production, colors):
+    width = chip_width(name, production)
+    stroke = (
+        f'stroke="{colors["live"]}" stroke-opacity=".6"'
+        if production
+        else f'stroke="{colors["border"]}"'
+    )
+    parts = [
+        f'<rect x="{x}" y="{y}" width="{width}" height="{CHIP_HEIGHT}" '
+        f'rx="{CHIP_HEIGHT / 2}" fill="{colors["foot"]}" {stroke}/>'
+    ]
+    text_left = x + CHIP_PAD
+    if production:
+        parts.append(
+            f'<circle cx="{x + CHIP_PAD + 4}" cy="{y + CHIP_HEIGHT / 2}" r="4" '
+            f'fill="{colors["live"]}"/>'
+        )
+        text_left += DOT_SPACE
+    parts.append(
+        f'<text x="{text_left + len(name) * CHAR_WIDTH / 2}" y="{y + 20}" '
+        f'text-anchor="middle" font-family="{MONO}" font-size="{CHIP_FONT}" '
+        f'fill="{colors["value"]}">{escape(name)}</text>'
+    )
+    return parts, width
+
+
+def draw_stack(groups, colors):
+    """Chips grouped by area, wrapped to the card width; production chips get a green dot."""
+    parts, top = [], GROUP_GAP / 2
+    for index, group in enumerate(groups):
+        if index:
+            parts.append(
+                f'<line x1="1" y1="{top - GROUP_GAP / 2}" x2="{WIDTH - 1}" '
+                f'y2="{top - GROUP_GAP / 2}" stroke="{colors["rule"]}"/>'
+            )
+        parts.append(
+            f'<text x="24" y="{top + 20}" font-family="{MONO}" font-size="13" '
+            f'letter-spacing="1.2" fill="{colors["sub"]}">{escape(group["label"].upper())}</text>'
+        )
+        x, y = CHIPS_LEFT, top
+        chips = [(name, True) for name in group["production"]] + [
+            (name, False) for name in group["public"]
+        ]
+        for name, production in chips:
+            if x + chip_width(name, production) > WIDTH - 24:
+                x, y = CHIPS_LEFT, y + CHIP_HEIGHT + CHIP_GAP
+            chip, width = draw_chip(x, y, name, production, colors)
+            parts += chip
+            x += width + CHIP_GAP
+        top = y + CHIP_HEIGHT + GROUP_GAP
+    body = top - GROUP_GAP / 2
+    height = body + FOOT_HEIGHT
+    return (
+        "\n".join(
+            [
+                f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{height}" '
+                f'viewBox="0 0 {WIDTH} {height}" role="img" aria-label="{escape(stack_alt(groups))}">',
+                f'<rect x="0.5" y="0.5" width="{WIDTH - 1}" height="{height - 1}" rx="8" '
+                f'fill="{colors["bg"]}" stroke="{colors["border"]}"/>',
+                f'<path d="M1 {body}H{WIDTH - 1}V{height - 9}a8 8 0 0 1-8 8H9a8 8 0 0 1-8-8Z" '
+                f'fill="{colors["foot"]}"/>',
+                f'<line x1="1" y1="{body}" x2="{WIDTH - 1}" y2="{body}" stroke="{colors["rule"]}"/>',
+                *parts,
+                f'<circle cx="28" cy="{body + 17}" r="4" fill="{colors["live"]}"/>'
+                f'<text x="40" y="{body + 21}" font-family="{MONO}" font-size="12" '
+                f'fill="{colors["sub"]}">in production · the rest is used in a public repository above</text>',
+                "</svg>",
+            ]
+        )
+        + "\n"
+    )
+
+
+def stack_alt(groups):
+    def names(group):
+        return [f"{name} (in production)" for name in group["production"]] + group[
+            "public"
+        ]
+
+    return "Stack: " + "; ".join(
+        f"{group['label']}: {', '.join(names(group))}" for group in groups
+    )
+
+
 def alt_text(tiles):
     return "Metrics: " + "; ".join(f"{tile['value']} {tile['label']}" for tile in tiles)
 
 
-def update_readme(tiles, today):
+def update_readme(tiles, groups, today):
     text = README_PATH.read_text(encoding="utf-8")
     text = re.sub(r'alt="Metrics:[^"]*"', f'alt="{escape(alt_text(tiles))}"', text)
+    text = re.sub(r'alt="Stack:[^"]*"', f'alt="{escape(stack_alt(groups))}"', text)
     text = re.sub(r"(<!--updated-->).*?(<!--/updated-->)", rf"\g<1>{today}\g<2>", text)
     README_PATH.write_text(text, encoding="utf-8")
 
@@ -146,10 +240,13 @@ def main():
         (ROOT / "profile" / f"metrics-{theme}.svg").write_text(
             draw(tiles, colors, footer), encoding="utf-8"
         )
+        (ROOT / "profile" / f"stack-{theme}.svg").write_text(
+            draw_stack(config["stack"], colors), encoding="utf-8"
+        )
     CONFIG_PATH.write_text(
         json.dumps(config, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
-    update_readme(tiles, today)
+    update_readme(tiles, config["stack"], today)
 
 
 if __name__ == "__main__":

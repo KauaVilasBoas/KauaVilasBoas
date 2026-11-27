@@ -86,32 +86,45 @@ Next: a regulation change monitor, an MCP server and the Azure deploy. [Architec
 
 ## Decisions worth reading
 
-Each one is a short document, most of them a five-minute read.
+Five short documents, most of them a five-minute read.
 
-- **Segue o Lead: why a lead waited up to 40 seconds for a reply.** About half of the wait was polling and debounce in the queue, about 9 seconds was the model, and the prompt cache hit rate couldn't be measured yet. *Write-up in progress.*
-- **[Spotify Data Analysis: deleting a feature that made the model 0.12% worse](https://github.com/KauaVilasBoas/Spotify-Data-Analysis#what-is-this).** A block of features stays only if it improves the error by 2% on its own, and that rule is code.
-- **[Normetry, ADR 013: the simulated inspection checks a fixed checklist of 131 items](https://github.com/KauaVilasBoas/Normetry/blob/main/docs/adr/013-inspection-checks-a-curated-checklist.md).** A fixed list gives precision and recall a fixed denominator, and a run costs one model call per item.
-- **[Lumen, ADR-0007: four rules that keep a library generic](https://github.com/KauaVilasBoas/Lumen/blob/main/docs/adr/0007-authz-3.0-generic-library.md).** No seed data, no global enforcement, no Users table and no code written for one consumer.
-- **[SISLAB: the active lab lives in a cookie, never in the JWT](https://github.com/KauaVilasBoas/SISLAB#highlights).** Every request checks it against the user's memberships again, and every query filters by it.
+| Project | Decision |
+|:--|:--|
+| `Segue o Lead` | **Why a lead waited up to 40 seconds for a reply** · *write-up in progress*<br><sub>About half of the wait was polling and debounce in the queue and about 9 seconds was the model. The prompt cache hit rate couldn't be measured yet.</sub> |
+| `Spotify Data Analysis` | **[Deleting a feature that made the model 0.12% worse](https://github.com/KauaVilasBoas/Spotify-Data-Analysis#what-is-this)**<br><sub>A block of features stays only if it improves the error by 2% on its own, and that rule is code.</sub> |
+| `Normetry · ADR 013` | **[The simulated inspection checks a fixed checklist of 131 items](https://github.com/KauaVilasBoas/Normetry/blob/main/docs/adr/013-inspection-checks-a-curated-checklist.md)**<br><sub>A fixed list gives precision and recall a fixed denominator, and a run costs one model call per item.</sub> |
+| `Lumen · ADR-0007` | **[Four rules that keep a library generic](https://github.com/KauaVilasBoas/Lumen/blob/main/docs/adr/0007-authz-3.0-generic-library.md)**<br><sub>No seed data, no global enforcement, no Users table and no code written for one consumer.</sub> |
+| `SISLAB` | **[The active lab lives in a cookie, never in the JWT](https://github.com/KauaVilasBoas/SISLAB#highlights)**<br><sub>Every request checks it against the user's memberships again, and every query filters by it.</sub> |
 
 ## Also built
 
-- **[Spotify Data Analysis](https://github.com/KauaVilasBoas/Spotify-Data-Analysis)**: a data-analysis exercise taken all the way to a system, with idempotent ingestion, a served model and a recommender that explains its picks over 89,740 tracks. Its error is 33.1% below the baseline, and it has 891 tests.
-- **PsychoGuard** (private, early): psychosocial-risk management under Brazil's NR-1, with surveys, a risk inventory, action plans and an ethics hotline for each company. .NET 8 and React.
+<a href="https://github.com/KauaVilasBoas/Spotify-Data-Analysis"><img align="right" width="44%" src="https://raw.githubusercontent.com/KauaVilasBoas/Spotify-Data-Analysis/main/.github/readme/recommendations.png" alt="Spotify Data Analysis recommendations screen, with the reason behind each pick"></a>
+
+### [Spotify Data Analysis](https://github.com/KauaVilasBoas/Spotify-Data-Analysis)
+
+A data-analysis exercise taken all the way to a system: idempotent ingestion, a served model and a recommender that explains its picks over 89,740 tracks.
+
+`.NET 8` `ML.NET` `PostgreSQL` `React` `error 33.1% below baseline` `891 tests`
+
+### PsychoGuard · early
+
+Psychosocial-risk management under Brazil's NR-1, with surveys, a risk inventory, action plans and an ethics hotline for each company.
+
+`.NET 8` `React` · private repository
 
 [All repositories](https://github.com/KauaVilasBoas?tab=repositories)
 
+<br clear="right">
+
 ## Stack
 
-**Backend** · C# ● · .NET 8 and 10 ● · ASP.NET Core ● · EF Core ● · Dapper ● · NHibernate ● · Java with Spring Boot ●<br>
-**AI** · Claude API ● · Python · FastAPI · LangGraph · RAG with hybrid search and re-ranking · evals in CI<br>
-**Data** · SQL Server ● · PostgreSQL with RLS ● · pgvector · MySQL ● · Redis<br>
-**Platform** · Docker ● · GitHub Actions ● · Hangfire ● · Keycloak ● · RabbitMQ · OpenTelemetry · .NET Aspire<br>
-**Front end** · React ● · TypeScript ●<br>
-**Practices** · DDD · CQRS · modular monolith · transactional outbox · multi-tenancy · architecture tests · ADRs
-
-<sub>● in production. Everything else is used in a public repository above.</sub>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="profile/stack-dark.svg">
+  <img src="profile/stack-light.svg" width="100%" alt="Stack: Backend: C# (in production), .NET 8 · 10 (in production), ASP.NET Core (in production), EF Core (in production), Dapper (in production), NHibernate (in production), Java · Spring Boot (in production); AI: Claude API (in production), Python, FastAPI, LangGraph, RAG · hybrid search · re-ranking, evals in CI; Data: SQL Server (in production), PostgreSQL · RLS (in production), MySQL (in production), pgvector, Redis; Platform: Docker (in production), GitHub Actions (in production), Hangfire (in production), Keycloak (in production), RabbitMQ, OpenTelemetry, .NET Aspire; Front end: React (in production), TypeScript (in production); Practices: DDD, CQRS, modular monolith, transactional outbox, multi-tenancy, architecture tests, ADRs">
+</picture>
 
 ---
 
-<sub>**Now** (updated <!--updated-->27 Nov 2026<!--/updated-->): shipping phase 3 of Normetry, cutting Segue o Lead's reply time and writing up the 40-second reply. Reach me at [kauacaldeira@hotmail.com](mailto:kauacaldeira@hotmail.com) or on [LinkedIn](https://www.linkedin.com/in/kauavilasboas). [Back to top](#top)</sub>
+> **Now** · updated <!--updated-->27 Nov 2026<!--/updated-->  
+> Shipping phase 3 of Normetry, cutting Segue o Lead's reply time and writing up the 40-second reply.  
+> [kauacaldeira@hotmail.com](mailto:kauacaldeira@hotmail.com) · [LinkedIn](https://www.linkedin.com/in/kauavilasboas) · [Back to top](#top)
