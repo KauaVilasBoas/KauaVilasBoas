@@ -60,11 +60,11 @@ Permission-based authorization and identity for ASP.NET Core. You mark an endpoi
 
 <br clear="right">
 
-<img align="right" width="44%" src="profile/shots/sgf.svg" alt="SGF dashboard">
+<img align="right" width="44%" src="profile/shots/li-joias.svg" alt="Li Joias financial system dashboard">
 
-### SGF · Li Joias · ● in production since Dec 2024
+### Li Joias · ● in production since Dec 2024
 
-Financial management for Li Joias, a jewelry retailer, built at Branef. It covers payables, receivables, installments, cash flow and inventory, and it has run the store's finances for two years.
+The financial system of Li Joias, a jewelry retailer. It covers payables, receivables, installments, cash flow and inventory, and it has run the store's finances for two years.
 
 `Java 17` `Spring Boot 3` `MySQL` `React` `Docker` `GitHub Actions deploys` · private repository
 
@@ -72,7 +72,9 @@ Financial management for Li Joias, a jewelry retailer, built at Branef. It cover
 
 ## Building now
 
-<a href="https://github.com/KauaVilasBoas/Normetry"><img src="profile/shots/normetry-demo.svg" width="100%" alt="Normetry answering a food-safety question with citations to the regulation"></a>
+<a href="https://github.com/KauaVilasBoas/Normetry"><img src="profile/shots/normetry-demo.gif" width="100%" alt="Normetry answering a question about cooked rice from the FDA Food Code, citing section 3-501.19 and opening the cited passage"></a>
+
+<sub>A real run on the local stack, with the waits sped up.</sub>
 
 ### [Normetry](https://github.com/KauaVilasBoas/Normetry) · compliance copilot for food service
 

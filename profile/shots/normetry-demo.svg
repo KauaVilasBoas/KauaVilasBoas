@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-label="Normetry demo recording">
-  <rect width="1280" height="640" rx="16" fill="#161b22"/>
-  <rect x="12" y="12" width="1256" height="616" rx="10" fill="none" stroke="#8d96a0" stroke-opacity=".45" stroke-width="3" stroke-dasharray="14 10"/>
-  <text x="640" y="306" text-anchor="middle" font-family="'Segoe UI',-apple-system,Helvetica,Arial,sans-serif" font-size="46" font-weight="700" fill="#e6edf3">Normetry demo recording</text>
-  <text x="640" y="360" text-anchor="middle" font-family="SFMono-Regular,Consolas,Menlo,monospace" font-size="26" fill="#8d96a0">question · streamed answer · verified citation</text>
-</svg>
