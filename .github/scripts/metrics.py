@@ -38,7 +38,11 @@ THEMES = {
         "foot": "#f6f8fa",
     },
 }
-WIDTH, TILE_HEIGHT, FOOT_HEIGHT = 840, 112, 30
+WIDTH, ROW_HEIGHT, FOOT_HEIGHT = 840, 118, 34
+ROWS = (
+    3,
+    2,
+)  # tiles per row: two rows stay readable when GitHub shrinks the image on a phone
 SANS = "'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif"
 MONO = "SFMono-Regular,Consolas,Menlo,monospace"
 
@@ -68,46 +72,54 @@ def tile_values(config):
 
 
 def draw(tiles, colors, footer):
-    tile_width = WIDTH / len(tiles)
-    height = TILE_HEIGHT + FOOT_HEIGHT
+    body = ROW_HEIGHT * len(ROWS)
+    height = body + FOOT_HEIGHT
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{height}" '
         f'viewBox="0 0 {WIDTH} {height}" role="img" aria-label="{escape(alt_text(tiles))}">',
         f'<rect x="0.5" y="0.5" width="{WIDTH - 1}" height="{height - 1}" rx="8" '
         f'fill="{colors["bg"]}" stroke="{colors["border"]}"/>',
-        f'<path d="M1 {TILE_HEIGHT}H{WIDTH - 1}V{height - 9}a8 8 0 0 1-8 8H9a8 8 0 0 1-8-8Z" '
+        f'<path d="M1 {body}H{WIDTH - 1}V{height - 9}a8 8 0 0 1-8 8H9a8 8 0 0 1-8-8Z" '
         f'fill="{colors["foot"]}"/>',
-        f'<line x1="1" y1="{TILE_HEIGHT}" x2="{WIDTH - 1}" y2="{TILE_HEIGHT}" stroke="{colors["rule"]}"/>',
     ]
-    for index, tile in enumerate(tiles):
-        x = index * tile_width + 18
-        if index:
+    remaining = iter(tiles)
+    for row, count in enumerate(ROWS):
+        top, tile_width = row * ROW_HEIGHT, WIDTH / count
+        parts.append(
+            f'<line x1="1" y1="{top + ROW_HEIGHT}" x2="{WIDTH - 1}" '
+            f'y2="{top + ROW_HEIGHT}" stroke="{colors["rule"]}"/>'
+        )
+        for column in range(count):
+            tile, x = next(remaining), column * tile_width + 24
+            if column:
+                parts.append(
+                    f'<line x1="{column * tile_width}" y1="{top + 16}" '
+                    f'x2="{column * tile_width}" y2="{top + ROW_HEIGHT - 16}" '
+                    f'stroke="{colors["rule"]}"/>'
+                )
             parts.append(
-                f'<line x1="{index * tile_width}" y1="14" x2="{index * tile_width}" '
-                f'y2="{TILE_HEIGHT - 14}" stroke="{colors["rule"]}"/>'
+                f'<text x="{x}" y="{top + 52}" font-family="{SANS}" font-size="38" '
+                f'font-weight="700" fill="{colors["value"]}">{escape(tile["value"])}</text>'
             )
-        parts.append(
-            f'<text x="{x}" y="50" font-family="{SANS}" font-size="30" font-weight="700" '
-            f'fill="{colors["value"]}">{escape(tile["value"])}</text>'
-        )
-        if tile.get("live"):
-            live_x = x + len(tile["value"]) * 16.5 + 8
+            if tile.get("live"):
+                live_x = x + len(tile["value"]) * 21 + 10
+                parts.append(
+                    f'<rect x="{live_x}" y="{top + 28}" width="38" height="20" rx="5" '
+                    f'fill="none" stroke="{colors["live"]}" stroke-opacity=".5"/>'
+                    f'<text x="{live_x + 19}" y="{top + 43}" text-anchor="middle" '
+                    f'font-family="{MONO}" font-size="13" font-weight="600" '
+                    f'fill="{colors["live"]}">live</text>'
+                )
             parts.append(
-                f'<rect x="{live_x}" y="30" width="30" height="16" rx="4" fill="none" '
-                f'stroke="{colors["live"]}" stroke-opacity=".5"/>'
-                f'<text x="{live_x + 15}" y="42" text-anchor="middle" font-family="{MONO}" '
-                f'font-size="10" font-weight="600" fill="{colors["live"]}">live</text>'
+                f'<text x="{x}" y="{top + 80}" font-family="{SANS}" font-size="18" '
+                f'fill="{colors["label"]}">{escape(tile["label"])}</text>'
             )
-        parts.append(
-            f'<text x="{x}" y="76" font-family="{SANS}" font-size="13.5" '
-            f'fill="{colors["label"]}">{escape(tile["label"])}</text>'
-        )
-        parts.append(
-            f'<text x="{x}" y="95" font-family="{MONO}" font-size="11" '
-            f'fill="{colors["sub"]}">{escape(tile["sub"])}</text>'
-        )
+            parts.append(
+                f'<text x="{x}" y="{top + 101}" font-family="{MONO}" font-size="13" '
+                f'fill="{colors["sub"]}">{escape(tile["sub"])}</text>'
+            )
     parts.append(
-        f'<text x="18" y="{TILE_HEIGHT + 19}" font-family="{MONO}" font-size="11" '
+        f'<text x="24" y="{body + 22}" font-family="{MONO}" font-size="12" '
         f'fill="{colors["sub"]}">{escape(footer)}</text>'
     )
     parts.append("</svg>")
