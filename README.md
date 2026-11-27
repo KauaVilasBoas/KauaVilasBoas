@@ -28,17 +28,17 @@
 
 ## About
 
-Three years of production experience in the .NET ecosystem. My day-to-day is designing modular monoliths that serve health-surveillance regulatory workflows for state government: systems where domain correctness, traceability, and auditability matter more than novelty.
+I have three years of production experience with .NET. At work I design modular monoliths for state-government health-surveillance workflows, where the domain has to be correct, traceable, and auditable.
 
-Outside of work I maintain **[Lumen](https://github.com/KauaVilasBoas/Lumen)**, a family of authorization and identity libraries for ASP.NET Core published on NuGet. It isn't a demo repository: it's versioned independently, documented with ADRs, and consumed in production by a multi-tenant laboratory system serving a real pharmacology lab. Having a real consumer is what keeps it honest. Every generic API in it was paid for by a concrete requirement, not invented in a vacuum.
+Outside of work I maintain [Lumen](https://github.com/KauaVilasBoas/Lumen), a family of authorization and identity libraries for ASP.NET Core published on NuGet. Each package is versioned on its own, its decisions are recorded in ADRs, and a multi-tenant system for a pharmacology lab runs it in production. Every generic API in it started as a requirement from that system.
 
-I default to **Clean Architecture**, **Domain-Driven Design**, and **CQRS** where they earn their place. Unit and integration tests are part of *done*, not an afterthought.
+I default to Clean Architecture, Domain-Driven Design, and CQRS where they earn their place, and a change is done when its unit and integration tests are.
 
-Open to remote backend roles aligned with **EU**, **UK**, or **US Eastern** time zones.
+Open to remote backend roles in EU, UK, or US Eastern time zones.
 
 ---
 
-## Core Expertise
+## Core expertise
 
 <table align="center">
   <tr>
@@ -84,18 +84,18 @@ Open to remote backend roles aligned with **EU**, **UK**, or **US Eastern** time
 
 ---
 
-## Engineering Principles
+## Engineering principles
 
 > *Architecture is the set of constraints I impose now to make change easier later.*
 
-- **Dependency direction matters more than folder structure.** Layers are a side effect; the real rule is that the Domain depends on nothing. Everything else is consequence.
-- **If a boundary isn't tested, it doesn't exist.** Module isolation and dependency rules are asserted by NetArchTest/ArchUnit suites that fail the build. Documentation drifts; a red test doesn't.
-- **A library earns its abstractions from a real consumer.** Generic APIs invented in a vacuum are guesses. Every extension point in Lumen exists because a shipping system needed it, and I wrote down *why* in an ADR.
-- **A modular monolith ships faster than a half-baked microservice.** Distribution is a cost, not a feature. I make it a deliberate choice, never a default.
+- **Dependency direction matters more than folder structure.** The layers follow from one rule: the Domain depends on nothing.
+- **If a boundary isn't tested, it doesn't exist.** NetArchTest and ArchUnit suites check module isolation and dependency rules, and they fail the build when one breaks. A rule written only in the docs drifts without anyone noticing.
+- **A library earns its abstractions from a real consumer.** Every extension point in Lumen exists because a shipping system needed it, and an ADR records why.
+- **A modular monolith ships faster than a half-baked microservice.** Splitting a service out adds network calls, deployments, and failure modes, so I do it only when a requirement asks for it.
 
 ---
 
-## Currently Building
+## Currently building
 
 ### [Normetry](https://github.com/KauaVilasBoas/Normetry) &nbsp;·&nbsp; <sub>Multi-tenant compliance copilot for regulated establishments</sub>
 
@@ -113,16 +113,16 @@ Open to remote backend roles aligned with **EU**, **UK**, or **US Eastern** time
   <img src="https://img.shields.io/badge/LangGraph-agents-1C3C3C?logo=langchain&logoColor=white" alt="LangGraph"/>
 </p>
 
-> A restaurant manager has to follow a food-safety code that runs to hundreds of pages, while the evidence sits in a binder of SOPs, licenses and temperature logs nobody re-reads. Normetry reads the establishment's own documents against the regulation. Every claim it makes cites an article and, when the claim is about the establishment, a passage of the establishment's own document.
+> A restaurant manager has to follow a food-safety code that runs to hundreds of pages, and the evidence sits in a binder of SOPs, licenses, and temperature logs that nobody re-reads. Normetry reads the establishment's documents against the regulation. Every claim it makes cites an article and, when the claim is about the establishment, the passage of its document that backs the claim.
 >
-> **Three jurisdictions (FDA Food Code, EU 852/2004, Anvisa RDC 216/2004), questions in Portuguese or English, 131 inspection checklist items.** Built in public, one phase at a time: the cited regulation chat and the simulated inspection work today, and the regulation change monitor is next.
+> **Three jurisdictions (FDA Food Code, EU 852/2004, Anvisa RDC 216/2004), questions in Portuguese or English, 131 inspection checklist items.** I build it in public, one phase at a time. The cited regulation chat and the simulated inspection work today, and the regulation change monitor comes next.
 
 ### How it's built
 
-- **Two services with one boundary.** A .NET 10 core (DDD, CQRS, EF Core, outbox, YARP, SignalR) owns the business logic and is the only way in. A Python service (FastAPI, LangGraph) owns the AI and is reachable only through the gateway.
-- **Citations a guard can check.** Retrieval is written by hand: pgvector and PostgreSQL full-text, fused with Reciprocal Rank Fusion, then a multilingual re-ranker. The model answers in structured JSON, and a deterministic guard drops any claim whose quote isn't in a retrieved chunk.
-- **Tenant isolation in the database.** Row-Level Security on every tenant-owned table, with the tenant set per transaction from the validated JWT, so even a buggy query can't return another tenant's rows.
-- **Evals in CI.** Every pull request that touches retrieval, ingestion or the datasets runs the retrieval eval and fails below its recall and MRR floors.
+- A .NET 10 core (DDD, CQRS, EF Core, outbox, YARP, SignalR) owns the business logic and is the only public entry point. A Python service (FastAPI, LangGraph) owns the AI, and only the gateway can reach it.
+- Retrieval is written by hand: pgvector and PostgreSQL full-text search, fused with Reciprocal Rank Fusion, then a multilingual re-ranker. The model answers in structured JSON, and a deterministic guard drops any claim whose quote isn't in a retrieved chunk.
+- PostgreSQL Row-Level Security covers every tenant-owned table. The tenant comes from the validated JWT and is set per transaction, so even a buggy query can't return another tenant's rows.
+- Every pull request that touches retrieval, ingestion, or the datasets runs the retrieval eval, and CI fails when recall or MRR drops below its floor.
 
 ```mermaid
 flowchart LR
@@ -167,74 +167,9 @@ flowchart LR
 Only .NET writes the `core` schema and only Python writes the `ai` schema. AI results such as findings and document status reach the core as queue events.
 
 <p align="center">
-  <b>For more information</b> on the architecture, the ADRs behind each decision,<br/>the eval reports and how to run it locally:
+  The repository covers the architecture, the ADRs behind each decision,<br/>the eval reports, and how to run it locally:
   <br><br>
   <a href="https://github.com/KauaVilasBoas/Normetry"><img src="https://img.shields.io/badge/Read%20the%20docs-KauaVilasBoas%2FNormetry-512BD4?style=for-the-badge&logo=github&logoColor=white" alt="Read the docs"/></a>
-</p>
-
-<br>
-
-### [Lumen](https://github.com/KauaVilasBoas/Lumen) &nbsp;·&nbsp; <sub>Plug-in authorization & identity for ASP.NET Core</sub>
-
-<p>
-  <a href="https://www.nuget.org/packages/Lumen.Authorization"><img src="https://img.shields.io/nuget/v/Lumen.Authorization?logo=nuget&label=Lumen.Authorization&color=004880" alt="Lumen.Authorization"/></a>
-  &nbsp;
-  <a href="https://www.nuget.org/packages/Lumen.Identity"><img src="https://img.shields.io/nuget/v/Lumen.Identity?logo=nuget&label=Lumen.Identity&color=004880" alt="Lumen.Identity"/></a>
-  &nbsp;
-  <a href="https://www.nuget.org/profiles/kauavilasboas"><img src="https://img.shields.io/badge/11%20packages-5.3k%2B%20downloads-43B581?logo=nuget&logoColor=white" alt="11 packages · 5.3k downloads"/></a>
-  &nbsp;
-  <a href="https://github.com/KauaVilasBoas/Lumen/actions/workflows/ci.yml"><img src="https://github.com/KauaVilasBoas/Lumen/actions/workflows/ci.yml/badge.svg" alt="CI"/></a>
-</p>
-
-> Every ASP.NET Core app ends up hand-rolling the same thing: a permissions table, a join to roles, an `[Authorize]` policy per endpoint, and a half-finished admin screen nobody wants to own. Lumen packages that. Decorate an action with `[RequirePermission]`, mount an admin console at `/lumen`, and keep full ownership of your permission catalog.
->
-> **11 packages across three families. 5,000+ downloads in the first two weeks after launch.** SQL Server and PostgreSQL, Redis or in-memory caching, and a consumer in production keeping the API honest.
-
-### How it plugs in
-
-```mermaid
-flowchart LR
-    subgraph APP["🧩 Your ASP.NET Core app"]
-        EP["Endpoints<br/><sub>[RequirePermission]</sub>"]
-        SEED["Your EF migration<br/><sub>SeedLumenPermission*</sub>"]
-        BO["/lumen<br/><sub>mounted backoffice</sub>"]
-    end
-
-    subgraph LIB["📦 Lumen.Authorization"]
-        ENF["AspNetCore<br/><sub>policy provider · enforcement</sub>"]
-        CORE["Core<br/><sub>profiles · permissions · CQRS</sub>"]
-        MIG["Migrations<br/><sub>Lumen schema · auto-apply</sub>"]
-    end
-
-    IDN["📦 Lumen.Identity<br/><sub>JWT · refresh tokens (optional)</sub>"]
-    DB[("SQL Server /<br/>PostgreSQL")]
-    CACHE[("Redis /<br/>MemoryCache")]
-
-    EP --> ENF --> CORE
-    BO --> CORE
-    CORE --> DB
-    CORE --> CACHE
-    MIG --> DB
-    SEED --> DB
-    IDN -. "authenticates the claim<br/>the library reads userId from" .-> ENF
-
-    classDef app  fill:#0b1220,stroke:#3b82f6,color:#dbeafe
-    classDef lib  fill:#0b1220,stroke:#f59e0b,color:#fde68a
-    classDef idn  fill:#0b1220,stroke:#10b981,color:#d1fae5
-    classDef data fill:#020617,stroke:#64748b,color:#cbd5e1
-
-    class EP,SEED,BO app
-    class ENF,CORE,MIG lib
-    class IDN idn
-    class DB,CACHE data
-```
-
-The library owns the `Lumen` schema and the enforcement pipeline. **You** own the catalog, the identity provider, and every enforcement point.
-
-<p align="center">
-  <b>For more information</b> on the four inviolable principles, the full package matrix,<br/>the ADRs behind each decision and a copy-paste quick start:
-  <br><br>
-  <a href="https://github.com/KauaVilasBoas/Lumen"><img src="https://img.shields.io/badge/Read%20the%20docs-KauaVilasBoas%2FLumen-512BD4?style=for-the-badge&logo=github&logoColor=white" alt="Read the docs"/></a>
 </p>
 
 ---
