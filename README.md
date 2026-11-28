@@ -127,6 +127,6 @@ Psychosocial-risk management under Brazil's NR-1, with surveys, a risk inventory
 
 ---
 
-> **Now** · updated <!--updated-->27 Nov 2026<!--/updated-->  
+> **Now** · updated <!--updated-->28 Nov 2026<!--/updated-->  
 > Shipping phase 3 of Normetry, cutting Segue o Lead's reply time and writing up the 40-second reply.  
 > [kauacaldeira@hotmail.com](mailto:kauacaldeira@hotmail.com) · [LinkedIn](https://www.linkedin.com/in/kauavilasboas) · [Back to top](#top)
