@@ -26,6 +26,8 @@ THEMES = {
         "sub": "#8d96a0",
         "live": "#3fb950",
         "foot": "#161b22",
+        "core_fill": "#271d55",
+        "core_stroke": "#8b74f7",
     },
     "light": {
         "bg": "#ffffff",
@@ -36,6 +38,8 @@ THEMES = {
         "sub": "#59636e",
         "live": "#1a7f37",
         "foot": "#f6f8fa",
+        "core_fill": "#f1edff",
+        "core_stroke": "#8250df",
     },
 }
 WIDTH, ROW_HEIGHT, FOOT_HEIGHT = 840, 118, 34
@@ -47,7 +51,7 @@ SANS = "'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif"
 MONO = "SFMono-Regular,Consolas,Menlo,monospace"
 # Stack card. Chip widths are estimated from a monospace advance of 0.6em, so the
 # text stays centered whatever monospace font the viewer has.
-CHIP_FONT, CHIP_HEIGHT, CHIP_GAP, CHIP_PAD, DOT_SPACE = 14, 30, 8, 12, 14
+CHIP_FONT, CHIP_HEIGHT, CHIP_GAP, CHIP_PAD = 14, 30, 8, 12
 CHAR_WIDTH = CHIP_FONT * 0.6
 CHIPS_LEFT, GROUP_GAP = 156, 20
 
@@ -131,38 +135,28 @@ def draw(tiles, colors, footer):
     return "\n".join(parts) + "\n"
 
 
-def chip_width(name, production):
-    return len(name) * CHAR_WIDTH + 2 * CHIP_PAD + (DOT_SPACE if production else 0)
+def chip_width(name):
+    return len(name) * CHAR_WIDTH + 2 * CHIP_PAD
 
 
-def draw_chip(x, y, name, production, colors):
-    width = chip_width(name, production)
-    stroke = (
-        f'stroke="{colors["live"]}" stroke-opacity=".6"'
-        if production
-        else f'stroke="{colors["border"]}"'
+def draw_chip(x, y, name, core, colors):
+    width = chip_width(name)
+    fill, stroke = (
+        (colors["core_fill"], colors["core_stroke"])
+        if core
+        else (colors["foot"], colors["border"])
     )
-    parts = [
+    return [
         f'<rect x="{x}" y="{y}" width="{width}" height="{CHIP_HEIGHT}" '
-        f'rx="{CHIP_HEIGHT / 2}" fill="{colors["foot"]}" {stroke}/>'
-    ]
-    text_left = x + CHIP_PAD
-    if production:
-        parts.append(
-            f'<circle cx="{x + CHIP_PAD + 4}" cy="{y + CHIP_HEIGHT / 2}" r="4" '
-            f'fill="{colors["live"]}"/>'
-        )
-        text_left += DOT_SPACE
-    parts.append(
-        f'<text x="{text_left + len(name) * CHAR_WIDTH / 2}" y="{y + 20}" '
-        f'text-anchor="middle" font-family="{MONO}" font-size="{CHIP_FONT}" '
-        f'fill="{colors["value"]}">{escape(name)}</text>'
-    )
-    return parts, width
+        f'rx="{CHIP_HEIGHT / 2}" fill="{fill}" stroke="{stroke}"/>',
+        f'<text x="{x + width / 2}" y="{y + 20}" text-anchor="middle" '
+        f'font-family="{MONO}" font-size="{CHIP_FONT}" '
+        f'fill="{colors["value"]}">{escape(name)}</text>',
+    ], width
 
 
 def draw_stack(groups, colors):
-    """Chips grouped by area, wrapped to the card width; production chips get a green dot."""
+    """Chips grouped by area and wrapped to the card width; the core stack is highlighted."""
     parts, top = [], GROUP_GAP / 2
     for index, group in enumerate(groups):
         if index:
@@ -175,13 +169,13 @@ def draw_stack(groups, colors):
             f'letter-spacing="1.2" fill="{colors["sub"]}">{escape(group["label"].upper())}</text>'
         )
         x, y = CHIPS_LEFT, top
-        chips = [(name, True) for name in group["production"]] + [
-            (name, False) for name in group["public"]
+        chips = [(name, True) for name in group["core"]] + [
+            (name, False) for name in group["more"]
         ]
-        for name, production in chips:
-            if x + chip_width(name, production) > WIDTH - 24:
+        for name, core in chips:
+            if x + chip_width(name) > WIDTH - 24:
                 x, y = CHIPS_LEFT, y + CHIP_HEIGHT + CHIP_GAP
-            chip, width = draw_chip(x, y, name, production, colors)
+            chip, width = draw_chip(x, y, name, core, colors)
             parts += chip
             x += width + CHIP_GAP
         top = y + CHIP_HEIGHT + GROUP_GAP
@@ -198,9 +192,10 @@ def draw_stack(groups, colors):
                 f'fill="{colors["foot"]}"/>',
                 f'<line x1="1" y1="{body}" x2="{WIDTH - 1}" y2="{body}" stroke="{colors["rule"]}"/>',
                 *parts,
-                f'<circle cx="28" cy="{body + 17}" r="4" fill="{colors["live"]}"/>'
-                f'<text x="40" y="{body + 21}" font-family="{MONO}" font-size="12" '
-                f'fill="{colors["sub"]}">in production · the rest is used in a public repository above</text>',
+                f'<rect x="24" y="{body + 11}" width="22" height="12" rx="6" '
+                f'fill="{colors["core_fill"]}" stroke="{colors["core_stroke"]}"/>'
+                f'<text x="54" y="{body + 21}" font-family="{MONO}" font-size="12" '
+                f'fill="{colors["sub"]}">core stack · every item is used in the work above</text>',
                 "</svg>",
             ]
         )
@@ -210,9 +205,7 @@ def draw_stack(groups, colors):
 
 def stack_alt(groups):
     def names(group):
-        return [f"{name} (in production)" for name in group["production"]] + group[
-            "public"
-        ]
+        return [f"{name} (core)" for name in group["core"]] + group["more"]
 
     return "Stack: " + "; ".join(
         f"{group['label']}: {', '.join(names(group))}" for group in groups

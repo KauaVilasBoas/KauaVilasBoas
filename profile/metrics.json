@@ -3,7 +3,7 @@
     "query": "Lumen",
     "prefix": "Lumen.",
     "owner": "kauavilasboas",
-    "last": 9028
+    "last": 9074
   },
   "tiles": [
     {
@@ -41,51 +41,52 @@
   "stack": [
     {
       "label": "Backend",
-      "production": [
+      "core": [
         "C#",
         ".NET 8 · 10",
         "ASP.NET Core",
-        "EF Core",
+        "EF Core"
+      ],
+      "more": [
         "Dapper",
         "NHibernate",
         "Java · Spring Boot"
-      ],
-      "public": []
+      ]
     },
     {
       "label": "AI",
-      "production": [
-        "Claude API"
+      "core": [
+        "Claude API",
+        "RAG · hybrid search · re-ranking"
       ],
-      "public": [
+      "more": [
         "Python",
         "FastAPI",
         "LangGraph",
-        "RAG · hybrid search · re-ranking",
         "evals in CI"
       ]
     },
     {
       "label": "Data",
-      "production": [
-        "SQL Server",
+      "core": [
         "PostgreSQL · RLS",
-        "MySQL"
+        "SQL Server"
       ],
-      "public": [
+      "more": [
         "pgvector",
-        "Redis"
+        "Redis",
+        "MySQL"
       ]
     },
     {
       "label": "Platform",
-      "production": [
+      "core": [
         "Docker",
-        "GitHub Actions",
-        "Hangfire",
-        "Keycloak"
+        "GitHub Actions"
       ],
-      "public": [
+      "more": [
+        "Hangfire",
+        "Keycloak",
         "RabbitMQ",
         "OpenTelemetry",
         ".NET Aspire"
@@ -93,19 +94,20 @@
     },
     {
       "label": "Front end",
-      "production": [
+      "core": [],
+      "more": [
         "React",
         "TypeScript"
-      ],
-      "public": []
+      ]
     },
     {
       "label": "Practices",
-      "production": [],
-      "public": [
-        "DDD",
-        "CQRS",
+      "core": [
         "modular monolith",
+        "DDD"
+      ],
+      "more": [
+        "CQRS",
         "transactional outbox",
         "multi-tenancy",
         "architecture tests",

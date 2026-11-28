@@ -15,14 +15,14 @@ At my day job at Branef, four years into my career, I build health-surveillance 
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="profile/metrics-dark.svg">
-  <img src="profile/metrics-light.svg" width="100%" alt="Metrics: 4 products in production; 9,028 NuGet downloads; 3.5k+ automated tests; 0.934 retrieval recall@10; 37 ADRs written">
+  <img src="profile/metrics-light.svg" width="100%" alt="Metrics: 4 products in production; 9,074 NuGet downloads; 3.5k+ automated tests; 0.934 retrieval recall@10; 37 ADRs written">
 </picture>
 
 <sub>Sources: [NuGet profile](https://www.nuget.org/profiles/kauavilasboas) · [Normetry eval reports](https://github.com/KauaVilasBoas/Normetry/tree/main/evals/reports) · [Normetry ADRs](https://github.com/KauaVilasBoas/Normetry/tree/main/docs/adr) · [Lumen ADRs](https://github.com/KauaVilasBoas/Lumen/tree/main/docs/adr). The card is redrawn every night by [a small workflow](.github/workflows/metrics.yml).</sub>
 
 ## Running in production
 
-<a href="https://segueolead.com.br"><img align="right" width="44%" src="profile/shots/segue-o-lead.png" alt="Segue o Lead website"></a>
+<a href="https://segueolead.com.br"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/shots/segue-o-lead-dark.png"><img align="right" width="44%" src="profile/shots/segue-o-lead-light.png" alt="Segue o Lead dashboard with demo data: leads and handoffs per day over 30 days, the time to the first AI reply and how many AI replies were read"></picture></a>
 
 ### [Segue o Lead](https://segueolead.com.br) · ● live
 
@@ -32,11 +32,13 @@ In its first 33 days live it handled 175 conversations and passed 66 qualified l
 
 `.NET 8` `modular monolith, 10 modules` `transactional outbox` `PostgreSQL RLS` `Claude API` `17 ADRs` · private repository
 
+[Website](https://segueolead.com.br)
+
 <!-- TESTIMONIAL: one line from the dealership owner goes here, as a blockquote. -->
 
 <br clear="right">
 
-<a href="https://sislab-gamma.vercel.app/login"><img align="right" width="44%" src="https://raw.githubusercontent.com/KauaVilasBoas/SISLAB/main/docs/screenshots/dilution-calculator.png" alt="SISLAB serial-dilution calculator"></a>
+<a href="https://sislab-gamma.vercel.app/login"><img align="right" width="44%" src="https://raw.githubusercontent.com/KauaVilasBoas/SISLAB/main/docs/screenshots/dashboard.png" alt="SISLAB dashboard with demo data: expired and expiring items, consumption over 30 days and active alerts"></a>
 
 ### [SISLAB](https://github.com/KauaVilasBoas/SISLAB) · ● live demo
 
@@ -48,7 +50,7 @@ Lab management for a pharmacology research lab that used to run on spreadsheets.
 
 <br clear="right">
 
-<a href="https://github.com/KauaVilasBoas/Lumen"><img align="right" width="44%" src="https://raw.githubusercontent.com/KauaVilasBoas/Lumen/main/docs/screenshots/backoffice-profile-permissions.png" alt="Lumen admin console, editing a profile's permissions"></a>
+<a href="https://github.com/KauaVilasBoas/Lumen"><img align="right" width="44%" src="profile/shots/lumen-code.png" alt="Lumen in an ordinary OrdersController: [RequirePermission] on List, with the code taken from the controller and action, and [RequirePermission(&quot;Orders.Approve&quot;)] on Approve"></a>
 
 ### [Lumen](https://github.com/KauaVilasBoas/Lumen) · ● 9k+ downloads
 
@@ -60,7 +62,7 @@ Permission-based authorization and identity for ASP.NET Core. You mark an endpoi
 
 <br clear="right">
 
-<img align="right" width="44%" src="profile/shots/li-joias.svg" alt="Li Joias financial system dashboard">
+<img align="right" width="44%" src="profile/shots/li-joias.png" alt="Li Joias financial dashboard with demo data: balance of the month, 30-day cash flow, expenses by category and stock value">
 
 ### Li Joias · ● in production since Dec 2024
 
@@ -120,7 +122,7 @@ Psychosocial-risk management under Brazil's NR-1, with surveys, a risk inventory
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="profile/stack-dark.svg">
-  <img src="profile/stack-light.svg" width="100%" alt="Stack: Backend: C# (in production), .NET 8 · 10 (in production), ASP.NET Core (in production), EF Core (in production), Dapper (in production), NHibernate (in production), Java · Spring Boot (in production); AI: Claude API (in production), Python, FastAPI, LangGraph, RAG · hybrid search · re-ranking, evals in CI; Data: SQL Server (in production), PostgreSQL · RLS (in production), MySQL (in production), pgvector, Redis; Platform: Docker (in production), GitHub Actions (in production), Hangfire (in production), Keycloak (in production), RabbitMQ, OpenTelemetry, .NET Aspire; Front end: React (in production), TypeScript (in production); Practices: DDD, CQRS, modular monolith, transactional outbox, multi-tenancy, architecture tests, ADRs">
+  <img src="profile/stack-light.svg" width="100%" alt="Stack: Backend: C# (core), .NET 8 · 10 (core), ASP.NET Core (core), EF Core (core), Dapper, NHibernate, Java · Spring Boot; AI: Claude API (core), RAG · hybrid search · re-ranking (core), Python, FastAPI, LangGraph, evals in CI; Data: PostgreSQL · RLS (core), SQL Server (core), pgvector, Redis, MySQL; Platform: Docker (core), GitHub Actions (core), Hangfire, Keycloak, RabbitMQ, OpenTelemetry, .NET Aspire; Front end: React, TypeScript; Practices: modular monolith (core), DDD (core), CQRS, transactional outbox, multi-tenancy, architecture tests, ADRs">
 </picture>
 
 ---
