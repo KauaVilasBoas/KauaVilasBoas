@@ -24,7 +24,7 @@ At my day job at Branef, four years into my career, I build health-surveillance 
 
 <sub>The screenshots were taken on local copies with demo data. The numbers in the text are real.</sub>
 
-<a href="https://segueolead.com.br"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/shots/segue-o-lead-dark.png"><img align="right" width="44%" src="profile/shots/segue-o-lead-light.png" alt="Segue o Lead dashboard with demo data: leads and handoffs per day over 30 days, the time to the first AI reply and how many AI replies were read"></picture></a>
+<a href="https://segueolead.com.br"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/shots/segue-o-lead-dashboard-dark.png"><img align="right" width="44%" src="profile/shots/segue-o-lead-dashboard-light.png" alt="Segue o Lead dashboard with demo data: leads and handoffs per day over 30 days, the time to the first AI reply and how many AI replies were read"></picture></a>
 
 ### [Segue o Lead](https://segueolead.com.br) · ● live
 
@@ -52,7 +52,7 @@ Lab management for a pharmacology research lab that used to run on spreadsheets.
 
 <br clear="right">
 
-<a href="https://github.com/KauaVilasBoas/Lumen"><img align="right" width="44%" src="profile/shots/lumen-code.png" alt="Lumen in an ordinary OrdersController: [RequirePermission] on List, with the code taken from the controller and action, and [RequirePermission(&quot;Orders.Approve&quot;)] on Approve"></a>
+<a href="https://github.com/KauaVilasBoas/Lumen"><img align="right" width="44%" src="profile/shots/lumen-controller.png" alt="Lumen in an ordinary OrdersController: [RequirePermission] on List, with the code taken from the controller and action, and [RequirePermission(&quot;Orders.Approve&quot;)] on Approve"></a>
 
 ### [Lumen](https://github.com/KauaVilasBoas/Lumen) · ● 9k+ downloads
 
@@ -64,7 +64,7 @@ Permission-based authorization and identity for ASP.NET Core. You mark an endpoi
 
 <br clear="right">
 
-<img align="right" width="44%" src="profile/shots/li-joias.png" alt="Li Joias financial dashboard with demo data: balance of the month, 30-day cash flow, expenses by category and stock value">
+<img align="right" width="44%" src="profile/shots/li-joias-dashboard.png" alt="Li Joias financial dashboard with demo data: balance of the month, 30-day cash flow, expenses by category and stock value">
 
 ### Li Joias · ● in production since Dec 2024
 
