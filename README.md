@@ -22,6 +22,8 @@ At my day job at Branef, four years into my career, I build health-surveillance 
 
 ## Running in production
 
+<sub>The screenshots were taken on local copies with demo data. The numbers in the text are real.</sub>
+
 <a href="https://segueolead.com.br"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/shots/segue-o-lead-dark.png"><img align="right" width="44%" src="profile/shots/segue-o-lead-light.png" alt="Segue o Lead dashboard with demo data: leads and handoffs per day over 30 days, the time to the first AI reply and how many AI replies were read"></picture></a>
 
 ### [Segue o Lead](https://segueolead.com.br) · ● live
