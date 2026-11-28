@@ -2,7 +2,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="profile/banner-dark.svg">
-  <img src="profile/banner-light.svg" width="100%" alt="Kauã Vilas Boas. Backend engineer, .NET and applied AI, regulated domains. Based in Salvador, Brazil (UTC−3), working hours overlap with the EU, the UK and the US East Coast, open to remote backend and AI roles.">
+  <img src="profile/banner-light.svg" width="100%" alt="Kauã Vilas Boas. Backend engineer, .NET and applied AI, regulated domains. Based in Brazil (UTC−3), working hours overlap with the EU, the UK and the US East Coast, open to remote backend and AI roles.">
 </picture>
 
 I build software for fields where a wrong answer costs something: health surveillance, lab research, food-safety compliance and car sales. Four of the products below are in production. Two of them put LLMs to work, and the newest checks every answer against its source.
@@ -40,7 +40,7 @@ In its first 33 days live it handled 175 conversations and passed 66 qualified l
 
 <br clear="right">
 
-<a href="https://sislab-gamma.vercel.app/login"><img align="right" width="44%" src="https://raw.githubusercontent.com/KauaVilasBoas/SISLAB/main/docs/screenshots/dashboard.png" alt="SISLAB dashboard with demo data: expired and expiring items, consumption over 30 days and active alerts"></a>
+<a href="https://sislab-gamma.vercel.app/login"><img align="right" width="44%" src="profile/shots/sislab.png" alt="SISLAB dashboard with demo data: expired and expiring items, consumption over 30 days and active alerts"></a>
 
 ### [SISLAB](https://github.com/KauaVilasBoas/SISLAB) · ● live demo
 
